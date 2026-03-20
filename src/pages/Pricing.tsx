@@ -1,0 +1,77 @@
+import { Box, Text, Container, Card, Grid, Button, Flex, Stack } from "@chakra-ui/react";
+import { Check } from "lucide-react";
+import { tiers } from "../data/pricing";
+
+const Pricing = () => {
+    return (
+        <Box h={"100vh"} w={"100%"} bg={"rgb(225, 226, 239)"} pt={5}>
+            <Container maxW="container.xl">
+                <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+                    {tiers.map((item, index) => (
+                        <Card.Root key={item.title} border="none">
+                            <Card.Body
+                                // Using 'flex' direction and 'gap' explicitly or 'spaceY'
+                                display="flex"
+                                flexDirection="column"
+                                gap={index === 1 ? "15px" : "15px"} // Using pixel values to see a clear difference
+                                bg={"#102271"}
+                                p={6}
+                                borderRadius="xl"
+                                position={"relative"}
+                                fontFamily={"poppins"}
+                            >
+                                <Stack gap={3}>
+                                    <Card.Title color="white" fontSize="xl">{item.title}</Card.Title>
+                                    <Card.Description display={"flex"} alignItems={"baseline"} gap={1} color={"whiteAlpha.800"}>
+                                        <Text fontSize={"3xl"} fontWeight="bold" color="white">{item.price}</Text>
+                                        <Text fontSize="sm">/ month</Text>
+                                    </Card.Description>
+                                </Stack>
+
+                                <Box borderY="1px solid" borderColor="whiteAlpha.300" py={5} flex="1">
+                                    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                                        {item.description.map((desc, i) => (
+                                            <Flex key={i} align="center" gap={3} mb={3}>
+                                                <Check size={18} color="#32CD32" />
+                                                <Text color="white" fontSize="sm">{desc}</Text>
+                                            </Flex>
+                                        ))}
+                                    </ul>
+                                </Box>
+
+                                <Button
+                                    width="full"
+                                    bg={index === 1 ? "orange.400" : "whiteAlpha.200"}
+                                    _hover={{ bg: index === 1 ? "orange.600" : "whiteAlpha.400" }}
+                                    color={index === 1 ? "white" : "white"}
+                                >
+                                    {item.buttonText}
+                                </Button>
+
+                                {index === 1 && (
+                                    <Box
+                                        position="absolute"
+                                        top="-10px"
+                                        left="60%"
+                                        bg="orange.400"
+                                        px={4}
+                                        py={1}
+                                        borderRadius="full"
+                                        fontSize="xs"
+                                        fontWeight="bold"
+                                        color="white"
+                                        boxShadow="lg"
+                                    >
+                                        MOST POPULAR
+                                    </Box>
+                                )}
+                            </Card.Body>
+                        </Card.Root>
+                    ))}
+                </Grid>
+            </Container>
+        </Box>
+    );
+};
+
+export default Pricing;

@@ -1,0 +1,163 @@
+import { Box, Text, Container, Image, Stack, Button, Badge } from "@chakra-ui/react";
+import { DataTable } from "../components/DataTable";
+import type { Column } from "../components/DataTable";
+
+interface UserProps {
+    id: number;
+    image: string;
+    name: string;
+    email: string;
+    role1: string;
+    role2: string;
+    status: string;
+    empdate: string;
+}
+
+const usersData: UserProps[] = [
+    {
+        id: 1,
+        image: "https://randomuser.me/api/portraits/women/1.jpg",
+        name: "Esthera Jackson",
+        email: "esthera@simmmpale.com",
+        role1: "Manager",
+        role2: "Organization",
+        status: "Online",
+        empdate: "14/06/21"
+    },
+    {
+        id: 2,
+        image: "https://randomuser.me/api/portraits/women/2.jpg",
+        name: "Alexa Liras",
+        email: "alexa@simmmpale.com",
+        role1: "Programmer",
+        role2: "Developer",
+        status: "Offline",
+        empdate: "14/06/21"
+    },
+    {
+        id: 3,
+        image: "https://randomuser.me/api/portraits/men/3.jpg",
+        name: "Laurent Michael",
+        email: "laurent@simmmpale.com",
+        role1: "Executive",
+        role2: "Projects",
+        status: "Online",
+        empdate: "14/06/21"
+    },
+    {
+        id: 4,
+        image: "https://randomuser.me/api/portraits/men/4.jpg",
+        name: "Freduardo Hill",
+        email: "freduardo@simmmpale.com",
+        role1: "Manager",
+        role2: "Organization",
+        status: "Online",
+        empdate: "14/06/21"
+    },
+    {
+        id: 5,
+        image: "https://randomuser.me/api/portraits/men/5.jpg",
+        name: "Daniel Thomas",
+        email: "daniel@simmmpale.com",
+        role1: "Programmer",
+        role2: "Developer",
+        status: "Offline",
+        empdate: "14/06/21"
+    },
+    {
+        id: 6,
+        image: "https://randomuser.me/api/portraits/men/6.jpg",
+        name: "Mark Wilson",
+        email: "mark@simmmpale.com",
+        role1: "Designer",
+        role2: "UI/UX Design",
+        status: "Offline",
+        empdate: "14/06/21"
+    },
+    {
+        id: 7,
+        image: "https://randomuser.me/api/portraits/men/9.jpg",
+        name: "Westside Gunn",
+        email: "bleed@reality.com",
+        role1: "QA",
+        role2: "Project Lead",
+        status: "Online",
+        empdate: "14/06/21"
+    }
+];
+
+const Userz: React.FC = () => {
+    // Define column configuration specifically for UserProps
+    const columns: Column<UserProps>[] = [
+        {
+            header: "AUTHOR",
+            accessor: "name",
+            render: (user) => (
+                <Box display="flex" alignItems="center" gap={3}>
+                    <Image src={user.image} alt={user.name} boxSize="40px" borderRadius="full" />
+                    <Stack gap={0}>
+                        <Text fontWeight="bold" lineHeight="short">{user.name}</Text>
+                        <Text fontSize="sm" color="gray.500" lineHeight="short">{user.email}</Text>
+                    </Stack>
+                </Box>
+            ),
+        },
+        {
+            header: "FUNCTION",
+            accessor: "role1",
+            render: (user) => (
+                <Stack gap={0}>
+                    <Text fontWeight="bold" lineHeight="short">{user.role1}</Text>
+                    <Text fontSize="sm" color="gray.500" lineHeight="short">{user.role2}</Text>
+                </Stack>
+            ),
+        },
+        {
+            header: "STATUS",
+            accessor: "status",
+            render: (user) => (
+                <Badge
+                    bg={user.status === "Online" ? "green" : "gray"}
+                    variant="subtle"
+                    px={2}
+                    borderRadius="full"
+                >
+                    {user.status}
+                </Badge>
+            ),
+        },
+        {
+            header: "EMPLOYED",
+            accessor: "empdate",
+            render: (user) => (
+                <Text fontWeight={"medium"}>
+                    {user.empdate}
+                </Text>
+            ),
+        },
+        {
+            header: "",
+            accessor: "actions",
+            render: () => (<Button bg="transparent">Edit</Button>),
+        },
+    ];
+
+    return (
+        <Box minH="100vh" width="100%" bg="rgb(225, 226, 239)" mt={2}>
+            <Container maxW="container.lg">
+                {/* The reusable table handles the mapping and the styling */}
+                <DataTable
+                    columns={columns}
+                    data={usersData}
+                    styles={{
+                        cell: { background: "rgb(225, 226, 239)", fontWeight: "bold", fontSize: "md", color: "black" },
+                        headerText: { color: "grey" }
+                    }}
+                />
+            </Container>
+        </Box>
+    );
+};
+
+export default Userz;
+

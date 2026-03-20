@@ -1,0 +1,74 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "image": "https://randomuser.me/api/portraits/women/1.jpg",
+            "name": "Esthera Jackson",
+            "email": "esthera@simmmpale.com",
+            "role1": "Manager",
+            "role2": "Organization",
+            "status": "Online",
+            "empdate": "14/06/21"
+        },
+        {
+            "id": 2,
+            "image": "https://randomuser.me/api/portraits/women/2.jpg",
+            "name": "Alexa Liras",
+            "email": "alexa@simmmpale.com",
+            "role1": "Programmer",
+            "role2": "Developer",
+            "status": "Offline",
+            "empdate": "14/06/21"
+        },
+        {
+            "id": 3,
+            "image": "https://randomuser.me/api/portraits/men/3.jpg",
+            "name": "Laurent Michael",
+            "email": "laurent@simmmpale.com",
+            "role1": "Executive",
+            "role2": "Projects",
+            "status": "Online",
+            "empdate": "14/06/21"
+        },
+        {
+            "id": 4,
+            "image": "https://randomuser.me/api/portraits/men/4.jpg",
+            "name": "Freduardo Hill",
+            "email": "freduardo@simmmpale.com",
+            "role1": "Manager",
+            "role2": "Organization",
+            "status": "Online",
+            "empdate": "14/06/21"
+        },
+        {
+            "id": 5,
+            "image": "https://randomuser.me/api/portraits/men/5.jpg",
+            "name": "Daniel Thomas",
+            "email": "daniel@simmmpale.com",
+            "role1": "Programmer",
+            "role2": "Developer",
+            "status": "Offline",
+            "empdate": "14/06/21"
+        },
+        {
+            "id": 6,
+            "image": "https://randomuser.me/api/portraits/men/6.jpg",
+            "name": "Mark Wilson",
+            "email": "mark@simmmpale.com",
+            "role1": "Designer",
+            "role2": "UI/UX Design",
+            "status": "Offline",
+            "empdate": "14/06/21"
+        },
+        {
+            "id": 7,
+            "image": "https://randomuser.me/api/portraits/men/9.jpg",
+            "name": "Westside Gunn",
+            "email": "bleed@reality.com",
+            "role1": "QA",
+            "role2": "Project Lead",
+            "status": "Online",
+            "empdate": "14/06/21"
+        }
+    ]
+}
