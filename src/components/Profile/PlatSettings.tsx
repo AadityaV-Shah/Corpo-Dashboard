@@ -22,7 +22,7 @@ const PlatSettings: React.FC = () => {
     };
 
     return (
-        <Stack alignContent={"flex-start"} gap={4} bg={"white"} p={5} rounded={"xl"} w={"100%"}>
+        <Stack alignContent={"flex-start"} gap={4} bg={"white"} p={5} rounded={"xl"} flex={1}>
             <Text fontWeight={"medium"} color={"black"} fontSize={"xl"}>Platform Settings</Text>
 
             <Stack alignContent={"flex-start"} gap={2}>

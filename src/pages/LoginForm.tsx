@@ -8,6 +8,7 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
+import { supabase } from "@/api/supabaseAdmin";
 import { useNavigate } from 'react-router-dom';
 import { Field } from '@/components/ui/field';
 import { toaster, Toaster as UIToaster } from '@/components/ui/toaster';
@@ -16,16 +17,20 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    console.log(e)
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === "avs@gmail.com" && password === "rockspeed") {
-      console.log({ email }, { password })
-      navigate("/dashboard")
+    setLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      toaster.create({ title: "Error", description: error.message, type: "error" });
     } else {
-      toaster.create({ title: 'Error', description: 'Incorrect email or password', type: 'error' });
+      navigate("/dashboard");
     }
+    setLoading(false);
   };
 
   return (
@@ -70,7 +75,7 @@ const LoginForm: React.FC = () => {
                 />
               </Field>
 
-              <Button type="submit" colorPalette="teal" variant="solid" width="full">
+              <Button type="submit" colorPalette="teal" variant="solid" width="full" loading={loading}>
                 Login
               </Button>
             </Stack>
@@ -85,7 +90,7 @@ const LoginForm: React.FC = () => {
         align="center"
         justify="center"
         display={{ base: "none", md: "flex" }}
-        bgImage="url('https://static.vecteezy.com/system/resources/previews/066/340/304/non_2x/abstract-bright-blue-gradient-green-background-trendy-wave-shapes-pattern-with-lines-background-colorful-design-vector.jpg')"
+        bgImage="url('/demonz.jpg')"
       >
         <Text fontFamily={"Poppins"} fontSize={'90px'}>TradeMasterPro</Text>
       </Flex>

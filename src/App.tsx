@@ -12,6 +12,7 @@ import Userz from './pages/Userz';
 import Projects from './pages/Projects';
 import SignUp from './pages/SignUp';
 import Profile1 from './pages/Profile1';
+import About from './pages/About';
 
 const App: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const App: React.FC = () => {
             <Route path="/markets" element={<Markets />} />
             <Route path="/userz" element={<Userz />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/about" element={<About />} />
           </Route>
         </Routes>
       </BrowserRouter>

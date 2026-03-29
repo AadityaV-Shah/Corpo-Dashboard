@@ -5,45 +5,74 @@ import {
     Input,
     Stack,
     Text,
+    HStack,
+    Center,
+    Flex,
+    Switch
 } from "@chakra-ui/react";
+import { supabase } from "@/api/supabaseAdmin";
 import { useNavigate } from 'react-router-dom';
 import { Field } from '@/components/ui/field';
 import { toaster, Toaster as UIToaster } from '@/components/ui/toaster';
+import { FaApple, FaFacebook, FaGoogle } from 'react-icons/fa';
 
 const SignUp: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
-    const isValidEmail = email.includes("@") && email.includes(".");
-    const isValidPassword = password.length >= 6;
-
-    const handleSubmit = (e: React.FormEvent) => {
-        console.log(e)
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (isValidEmail && isValidPassword) {
-            console.log({ email, password });
-            navigate("/");
+        setLoading(true);
+
+        const { error } = await supabase.auth.signUp({ email, password });
+
+        if (error) {
+            toaster.create({ title: "Error", description: error.message, type: "error" });
         } else {
-            toaster.create({ title: 'Error', description: 'Invalid email or password', type: 'error' });
+            toaster.create({ title: "Success", description: "Account created! You can now log in.", type: "success" });
+            navigate("/");
         }
+
+        setLoading(false);
     };
 
     return (
 
-        <Box minH={"100vh"} minW={"100vw"} bg={"rgb(225, 226, 239)"} alignContent={"center"} justifyItems={"center"} position={"relative"}>
+        <Box minH={"100vh"} minW={"100vw"} bg={"rgb(207, 205, 205)"} alignContent={"center"} justifyItems={"center"} position={"relative"}>
             <Box
                 w="full"
                 h="300px"
-                bgImage="url('https://static.vecteezy.com/system/resources/previews/066/340/304/non_2x/abstract-bright-blue-gradient-green-background-trendy-wave-shapes-pattern-with-lines-background-colorful-design-vector.jpg')"
+                bgImage="url('/demonz.jpg')"
                 position="absolute"
                 left={0}
                 top={0}
                 roundedBottom="xl"
             />
-            <Box position={"absolute"} h={"auto"} w={"400px"} gap={4} bg={"white"} p={5} rounded={"xl"} top={200} left={550}>
-                <Stack>
-                    <Box justifyItems={"center"}> <Text color={"black"} fontWeight={"medium"} fontSize={"xl"}>Register</Text> </Box>
+            <Box position={"absolute"} h={"auto"} w={"400px"} gap={4} bg={"white"} p={5} rounded={"xl"} top={100} left={550}>
+                <Stack gap={6}>
+                    <Box justifyItems={"center"}> <Text color={"black"} fontWeight={"medium"} fontSize={"xl"}>Register with</Text> </Box>
+
+                    <HStack gap={1} justifyContent={"space-evenly"} alignItems={"center"}>
+
+                        <Center p={3} border="1px solid" borderColor="gray.300" borderRadius="md" cursor={"pointer"}>
+                            <FaFacebook color="grey" size="30px" />
+                        </Center>
+
+                        <Center p={3} border="1px solid" borderColor="gray.300" borderRadius="md" cursor={"pointer"}>
+                            <FaApple color="grey" size="30px" />
+                        </Center>
+
+                        <Center p={3} border="1px solid" borderColor="gray.300" borderRadius="md" cursor={"pointer"}>
+                            <FaGoogle color="grey" size="30px" />
+                        </Center>
+
+                    </HStack>
+
+                    <Flex justify={"center"}>
+                        <Text color={"grey"}>or</Text>
+                    </Flex>
 
                     <UIToaster />
 
@@ -67,9 +96,30 @@ const SignUp: React.FC = () => {
                                 />
                             </Field>
 
-                            <Button type="submit" colorPalette="teal" variant="solid" width="full">
-                                Sign Up
-                            </Button>
+                            <HStack gap={2} py={0}>
+                                <Switch.Root colorPalette={"green"} size={"lg"}
+                                >
+                                    <Switch.HiddenInput />
+                                    <Switch.Control />
+                                    <Switch.Label />
+                                </Switch.Root>
+                                <Text fontWeight={"medium"} color={"grey"} fontSize={"sm"}>Remember Me</Text>
+                            </HStack>
+
+                            <HStack gap={2} justifyContent={"space-between"} alignContent={"center"}>
+                                <Button type="submit" colorPalette="teal" variant="solid" flex={1} loading={loading}>
+                                    Sign Up
+                                </Button>
+
+                                <Button
+                                    colorPalette="teal"
+                                    variant="solid"
+                                    flex={1}
+                                    onClick={() => navigate("/")}
+                                >
+                                    Back
+                                </Button>
+                            </HStack>
                         </Stack>
                     </form>
 

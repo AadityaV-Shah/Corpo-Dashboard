@@ -1,5 +1,5 @@
 import { Box, Flex, HStack, Text, Button } from "@chakra-ui/react";
-import { LayoutDashboard, User, PencilLine } from "lucide-react";
+import { LayoutDashboard, PencilLine } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {

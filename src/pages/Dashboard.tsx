@@ -3,9 +3,9 @@ import {
     Box,
     Flex,
 } from "@chakra-ui/react";
-import InfoNumbers from '@/components/InfoNumbers';
-import Herobust from '@/components/Herobust';
-import BarInfo from '@/components/BarInfo';
+import InfoNumbers from '@/components/Dashboard/InfoNumbers';
+import Herobust from '@/components/Dashboard/Herobust';
+import BarInfo from '@/components/Dashboard/BarInfo';
 
 const Dashboard: React.FC = () => {
     return (

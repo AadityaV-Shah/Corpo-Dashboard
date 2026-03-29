@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Box,
-    Button,
     Stack,
     Text,
     Image,
     HStack,
-    Container,
-    SimpleGrid
+    Container
 } from "@chakra-ui/react";
+import {
+    MenuContent,
+    MenuItem,
+    MenuRoot,
+    MenuTrigger,
+    IconButton
+} from "@chakra-ui/react";
+import { supabaseApi } from '@/api/supabase';
+import { supabase } from '@/api/supabaseAdmin';
+import { Menu as MenuIcon } from "lucide-react";
 import { Box as Blox, Wrench } from "lucide-react";
 import { HandFist } from "lucide-react";
-import { UserDataDetes } from "../data/UserData"
-import PlatSettings from '@/components/PlatSettings';
-import ProfInfo from '@/components/ProfInfo';
-import ProfConvo from '@/components/ProfConvo';
-import { ProfProjData } from "../data/ProfProj"
+import PlatSettings from '@/components/Profile/PlatSettings';
+import ProfInfo from '@/components/Profile/ProfInfo';
+import ProfConvo from '@/components/Profile/ProfConvo';
+import ProfCard from '@/components/Profile/ProfCard';
+import type { ProfInfoProps } from '@/components/Profile/ProfInfo';
 
 interface ProfNavProps {
     image: React.ReactNode;
@@ -38,123 +46,149 @@ const ProvNavData: ProfNavProps[] = [
 ]
 
 const Profile1: React.FC = () => {
+
+    const [activeTab, setActiveTab] = useState("Overview")
+    const [userEmail, setUserEmail] = useState("");
+    const [profile, setProfile] = useState<ProfInfoProps>({ name: "", phone: "", location: "", about: "" });
+
+    useEffect(() => {
+        const getUser = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) return;
+
+            setUserEmail(session.user.email ?? "");
+
+            const response = await supabaseApi.get(`/admin_profiles?id=eq.${session.user.id}`);
+            if (response.data.length > 0) {
+                const { name, phone, location, about } = response.data[0];
+                setProfile({ name, phone, location, about });
+            }
+        };
+        getUser();
+    }, []);
+
     return (
+
         <Box minH={"100vh"} minW={"full"} bg={"rgb(225, 226, 239)"}>
+
+            {/* Upper part of the profile (Name, email, navigation) */}
             <Box
                 w="full"
-                h="150px"
-                bgImage="url('https://static.vecteezy.com/system/resources/previews/066/340/304/non_2x/abstract-bright-blue-gradient-green-background-trendy-wave-shapes-pattern-with-lines-background-colorful-design-vector.jpg')"
+                h="100px"
+                bgImage="url('/demonz.jpg')"
                 position="relative"
                 left={0}
                 top={0}
                 roundedBottom="xl"
             >
-                <Box position={"absolute"} display={"flex"} justifyContent={"space-between"} alignContent={"center"} h={"100px"} w={"1188px"} p={4} rounded={"xl"} top={100} left={50} backdropFilter="blur(30px)"
+                <Box
+                    position={"absolute"}
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    alignItems={"center"} // Changed from alignContent
+                    h={"100px"}
+
+                    /* RESPONSIVE WIDTH LOGIC */
+                    w={{ base: "90%", md: "95%", lg: "1188px" }}
+                    maxW="1188px"
+
+                    /* CENTERING LOGIC */
+                    top={50}
+                    left="50%"
+                    transform="translateX(-50%)"
+
+                    p={4}
+                    backdropFilter="blur(30px)"
                     bg="whiteAlpha.100"
                     border="1px solid"
                     borderColor="whiteAlpha.300"
                     borderRadius="xl"
-                    boxShadow="lg">
+                    boxShadow="lg"
+                >
 
                     <Box display={"flex"} justifyContent={"space-between"} alignContent={"center"} gap={4}>
-                        <Image src="/simon2.jpg" boxSize="70px" borderRadius="xl" />
+                        <Image src="/simon2.jpg" boxSize="70px" borderRadius="xl" display={{ sm: 'none', md: 'block' }} />
                         <Stack gap={0} alignContent={"center"} mt={2}>
-                            {UserDataDetes.map((item) => (
-                                <>
-                                    <Text color={"black"} fontWeight={"medium"} fontSize={"20px"}>{item.name}</Text>
-                                    <Text color={"grey"} fontSize={"15px"}>{item.email}</Text>
-                                </>
-                            ))}
+                            <Text color={"black"} fontWeight={"medium"} fontSize={"20px"}>{profile.name || '-'}</Text>
+                            <Text color={"grey"} fontSize={"15px"}>{userEmail}</Text>
                         </Stack>
                     </Box>
 
-                    <HStack gap={8} mr={8}>
+
+                    {/* Normal display on desktop */}
+                    <HStack gap={8} mr={8} display={{ base: 'none', lg: 'flex' }}>
                         {ProvNavData.map((item) => (
                             <>
-                                <Text color={"black"} display={"flex"} gap={1}
+                                <Text
+                                    key={item.name}
+                                    onClick={() => setActiveTab(item.name)} // 3. Update state on click
+                                    color={activeTab === item.name ? "white" : "black"} // 4. Dynamic styling
+                                    bg={activeTab === item.name ? "black" : "white"}
+                                    display={"flex"} gap={1} p={2} rounded={"xl"} cursor={"pointer"}
                                     transition='0.3s'
-                                    _hover={{ color: 'white', bg: 'black', p: '2', transform: 'translateY(-2px)', }}
-                                    bg={"white"}
-                                    p={2}
-                                    rounded={"xl"}
-                                    cursor={"pointer"}
-                                >{item.image}{item.name}</Text>
+                      
+                                    _hover={{ color: 'white', bg: 'black', p: '2', transform: 'translateY(-2px)' }}
+                                >
+                                    {item.image}{item.name}
+                                </Text>
                             </>
                         ))}
                     </HStack>
 
+                    {/* Mobile Display */}
+                    <Box display={{ base: "block", lg: "none" }} position={"relative"}>
+                        <MenuRoot>
+                            <MenuTrigger asChild>
+                                <IconButton variant="outline" aria-label="Open Menu">
+                                    <MenuIcon />
+                                </IconButton>
+                            </MenuTrigger>
+                            <MenuContent borderRadius="xl" boxShadow="lg" p={2} bg={"white"} zIndex={2000} position={"absolute"} top={"-100%"} right={"110%"}>
+                                {ProvNavData.map((item) => (
+                                    <MenuItem
+                                        value={item.name} // v3 requires a value prop
+                                        key={item.name}
+                                        onClick={() => setActiveTab(item.name)}
+                                        cursor="pointer"
+                                        borderRadius="lg"
+                                        bg={activeTab === item.name ? "black" : "transparent"}
+                                        color={activeTab === item.name ? "white" : "black"}
+                                        _hover={{ bg: "gray.200", color: "black" }}
+                                    >
+                                        {item.image} {item.name}
+                                    </MenuItem>
+                                ))}
+                            </MenuContent>
+                        </MenuRoot>
+                    </Box>
+
                 </Box>
             </Box>
 
-            <Container mt={"80px"}>
-                <Box gridTemplateColumns={'repeat(3, 1fr)'} display={"flex"} gap={3}>
-                    <PlatSettings />
-                    <ProfInfo />
-                    <ProfConvo />
-                </Box>
-            </Container>
 
-            <Container mt={"40px"} mb={"40px"}>
-                <Stack p={5} bg={"white"} rounded={'xl'}>
-                    <Text fontWeight={"bold"} fontSize={"xl"} color={"black"}>Projects</Text>
-                    <Text fontWeight={"medium"} color={"grey"} fontSize={"sm"}>Architects Design Houses</Text>
+            {/* Profile components */}
+            {activeTab === "Overview" && (
+                <Container mt={"80px"}>
+                    <Box
+                        gridTemplateColumns={{ base: 'repeat(1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
+                        display={"flex"}
+                        flexDirection={{ base: "column", md: "row" }}
+                        gap={3}
+                        zIndex={1000}
+                    >
+                        <PlatSettings />
+                        <ProfInfo />
+                        <ProfConvo />
+                    </Box>
+                </Container>
+            )}
 
-                    {/* Use SimpleGrid for easy responsive columns */}
-                    <SimpleGrid columns={[1, 2, 4]} gap={3} my={4}>
-                        {/* 1. Only map the first 3 items to keep the 4th slot open */}
-                        {ProfProjData.slice(0, 3).map((item, index) => (
-                            <Stack
-                                key={index}
-                                align={"flex-start"}
-                                gap={4}
-                                bg={"white"}
-                                p={5}
-                                rounded={"xl"}
-                                shadow="sm"
-                            >
-                                <Image
-                                    src={item.image}
-                                    w={"full"}
-                                    h={"200px"}
-                                    objectFit="cover"
-                                    borderRadius="md"
-                                    alt={item.name1}
-                                />
-                                <Stack gap={1}>
-                                    <Text fontSize={"sm"} color={"grey"}>{item.name1}</Text>
-                                    <Text fontSize={"xl"} color={"black"} fontWeight={'bold'} lineHeight={'short'}>
-                                        {item.name2}
-                                    </Text>
-                                </Stack>
-                                <Text fontSize={"sm"} color={"grey"} h={'60px'}>
-                                    {item.detail}
-                                </Text>
-                                <Button border={"1px teal solid"} bg={'white'} color={'teal'} _hover={{ bg: 'teal.50' }} w={'full'} focusRing={'none'}>
-                                    View All
-                                </Button>
-                            </Stack>
-                        ))}
 
-                        {/* 2. The Custom 4th Box (Now sits perfectly in the last column) */}
-                        <Stack
-                            align={"center"}
-                            justify={"center"}
-                            border={"2px dashed"}
-                            borderColor={"gray.800"}
-                            rounded={"xl"}
-                            p={5}
-                            transition="all 0.2s"
-                            cursor="pointer"
-                            _hover={{ bg: "gray.50", borderColor: "teal.300" }}
-                        >
-                            <Text color={'black'} fontSize={'4xl'} lineHeight="1">+</Text>
-                            <Text color={'black'} fontSize={'md'} fontWeight="bold" textAlign="center">
-                                Create a New Project
-                            </Text>
-                        </Stack>
-                    </SimpleGrid>
-                </Stack>
-            </Container>
+            {/* Profile Project Cards */}
+            {activeTab === "Projects" && (
+                <ProfCard />
+            )}
+
         </Box>
 
     )

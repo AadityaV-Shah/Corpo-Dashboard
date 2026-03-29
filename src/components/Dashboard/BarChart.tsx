@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Flex, Text, VStack, HStack } from '@chakra-ui/react';
 
 const BarChart = () => {

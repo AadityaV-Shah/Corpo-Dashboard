@@ -12,7 +12,7 @@ interface MentorProps {
 const mentorData: MentorProps[] = [
     {
         image: "https://randomuser.me/api/portraits/women/91.jpg",
-        name: "Dr. Sarah France",
+        name: "Dr. Lucy Steele",
         role: "AI Research Mentor",
         wplace: "Stanford University",
         skill: "Machine Learning & Deep Learning",
@@ -43,8 +43,8 @@ const mentorData: MentorProps[] = [
         detail: "Peter Griffin works at Microsoft focusing on cloud infrastructure and DevOps. He advises on scalable cloud architecture and best practices for deployment pipelines."
     },
     {
-        image: "https://randomuser.me/api/portraits/women/35.jpg",
-        name: "Priya Nair",
+        image: "https://randomuser.me/api/portraits/men/90.jpg",
+        name: "Gyro Zeppeli",
         role: "Data Science Advisor",
         wplace: "IBM",
         skill: "Data Analytics & AI Solutions",
@@ -68,12 +68,12 @@ const Mentors = () => {
                     templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
                     gap={6}
                 >
-                    {mentorData.map((item, index) => (
+                    {mentorData.map((item) => (
                         <Card.Root borderRadius="xl">
                             <Card.Body display="flex"
                                 flexDirection="column"
                                 gap={"5"} // Using pixel values to see a clear difference
-                                bgImage="url('/designMentor.jpg')"
+                                bgImage="linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/designMentor.jpg')"
                                 bgSize="cover"
                                 borderRadius="xl"
                                 position={"relative"}
@@ -109,7 +109,7 @@ const Mentors = () => {
                                 <Stack w={"full"} align={"center"} gap={3}>
                                     <Text fontSize={"22px"}>{item.name}</Text>
                                     <Text fontSize={"16px"}>{item.role}</Text>
-                                    <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"}>{item.wplace}</Text>
+                                    <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"} cursor={"pointer"}>{item.wplace}</Text>
                                     <Text fontSize={"15px"}>{item.skill}</Text>
                                 </Stack>
                             </Card.Body>

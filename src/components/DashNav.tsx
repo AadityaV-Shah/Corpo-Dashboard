@@ -1,10 +1,8 @@
-import { Box, Flex, HStack, Text, Button, Link } from "@chakra-ui/react";
-import { LayoutDashboard, User, PencilLine } from "lucide-react";
+import { Box, Flex, HStack, Text } from "@chakra-ui/react";
 import { Input, Group, InputElement } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react"
 import { IoMdPerson } from "react-icons/io";
 import { IoMdSettings } from "react-icons/io";
-import { FaBell, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaBell, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -27,17 +25,17 @@ const Navbar = () => {
                 align="center"
             >
                 <HStack>
-                    <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="gray">
-                        PAGES
+                    <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="gray" display={{ sm: 'none', lg: 'block' }}>
+                        PAGES /
                     </Text>
                     <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="black">
-                        / WELCOME TO TRADEMASTERPRO!
+                        WELCOME TO TRADEMASTERPRO!
                     </Text>
                 </HStack>
 
                 {/* Center: Navigation Links */}
                 <HStack gap="8" display={{ base: "none", sm: "flex" }}>
-                    <Group flex="1" maxW="300px">
+                    <Group flex="1" maxW="300px" display={{ sm: 'none', lg: 'block' }}>
                         <InputElement pointerEvents="none" placement="start" ps="3">
                             <IoMdPerson color="gray.500" size={20} />
                         </InputElement>
@@ -53,11 +51,11 @@ const Navbar = () => {
                     </Group>
 
                     <HStack gap="6" color="gray.600">
-                        <FaFacebook color="gray.500" size={20} />
-                        <FaInstagram color="gray.500" size={20} />
-                        <FaLinkedin color="gray.500" size={20} />
-                        <FaBell color="gray.500" size={20} />
-                        <IoMdSettings color="gray.500" size={20} />
+                        <FaFacebook color="gray.500" size={20} cursor={"pointer"} />
+                        <a href="https://github.com/AadityaV-Shah" target="blank"><FaGithub color="gray.500" size={20} cursor={"pointer"} /></a>
+                        <a href="https://www.linkedin.com/in/aaditya-vikram-shah-b9b06a3b6/" target="blank"><FaLinkedin color="gray.500" size={20} cursor={"pointer"} /></a>
+                        <FaBell color="gray.500" size={20} cursor={"pointer"} />
+                        <IoMdSettings color="gray.500" size={20} cursor={"pointer"} />
                     </HStack>
                 </HStack>
             </Flex>

@@ -27,7 +27,7 @@ const Markets = () => {
                     templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
                     gap={6}
                 >
-                    {marketsData.map((item, index) => (
+                    {marketsData.map((item) => (
                         <Card.Root borderRadius="xl">
                             <Card.Body display="flex"
                                 flexDirection="column"

@@ -1,9 +1,32 @@
+import React, { useState, useEffect } from 'react';
+import { supabase } from "@/api/supabaseAdmin";
 import { Box, Stack, Text, HStack, Flex, Icon } from "@chakra-ui/react";
-import { LayoutDashboard, User, BanknoteArrowUp, Rocket, Pencil, BadgeDollarSign, } from "lucide-react";
+import { LayoutDashboard, User, BanknoteArrowUp, Rocket, Pencil, BadgeDollarSign, Info } from "lucide-react";
 import { Link as RouterLink } from "react-router-dom";
 import OptionsMenu from "./OptionsMenu";
+import type { ProfInfoProps } from '@/components/Profile/ProfInfo';
+import { supabaseApi } from '@/api/supabase';
 
 const LeftSection = () => {
+
+    const [userEmail, setUserEmail] = useState("");
+    const [profile, setProfile] = useState<ProfInfoProps>({ name: "", phone: "", location: "", about: "" });
+
+    useEffect(() => {
+        const getUser = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) return;
+
+            setUserEmail(session.user.email ?? "");
+
+            const response = await supabaseApi.get(`/admin_profiles?id=eq.${session.user.id}`);
+            if (response.data.length > 0) {
+                const { name, phone, location, about } = response.data[0];
+                setProfile({ name, phone, location, about });
+            }
+        };
+        getUser();
+    }, []);
 
     const menuItems = [
         { name: "Home", icon: LayoutDashboard, path: "/dashboard" },
@@ -15,6 +38,7 @@ const LeftSection = () => {
     const accItems = [
         { name: "Users", icon: User, path: "/userz" },
         { name: "Projects", icon: Rocket, path: "/projects" },
+        { name: "About Us", icon: Info, path: "/about" },
     ];
 
     return (
@@ -101,9 +125,9 @@ const LeftSection = () => {
 
                 <HStack
                     w="100%"
-                    mt={48}
+                    mt={32}
                     px={1}
-                    pt={3}
+                    pt={4}
                     gap={2}
                     align="center"
                     borderTop="1px solid grey"
@@ -118,10 +142,10 @@ const LeftSection = () => {
 
                     <Box mr="auto">
                         <Text fontSize="sm" fontWeight="500" lineHeight="16px" color="black">
-                            Aaditya V. Shah
+                            {profile.name || '-'}
                         </Text>
                         <Text fontSize="xs" color="black">
-                            aaditya@email.com
+                            {userEmail}
                         </Text>
                     </Box>
                     <OptionsMenu />

@@ -1,7 +1,28 @@
-import { Box, Text, Container, Image, Stack, Button, Badge } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import {
+    Box,
+    Text,
+    Container,
+    Image,
+    Stack,
+    Button,
+    Badge,
+    Dialog,
+    HStack,
+    Input,
+    Grid,
+    InputGroup,
+    Menu,
+    Portal
+} from "@chakra-ui/react";
+import { LuSearch } from "react-icons/lu";
+import { RadioGroup } from "@chakra-ui/react";
 import { DataTable } from "../components/DataTable";
 import type { Column } from "../components/DataTable";
+import { ChevronDown } from "lucide-react";
 
+// --- Interfaces ---
 interface UserProps {
     id: number;
     image: string;
@@ -13,81 +34,198 @@ interface UserProps {
     empdate: string;
 }
 
+// --- Mock Data ---
 const usersData: UserProps[] = [
-    {
-        id: 1,
-        image: "https://randomuser.me/api/portraits/women/1.jpg",
-        name: "Esthera Jackson",
-        email: "esthera@simmmpale.com",
-        role1: "Manager",
-        role2: "Organization",
-        status: "Online",
-        empdate: "14/06/21"
-    },
-    {
-        id: 2,
-        image: "https://randomuser.me/api/portraits/women/2.jpg",
-        name: "Alexa Liras",
-        email: "alexa@simmmpale.com",
-        role1: "Programmer",
-        role2: "Developer",
-        status: "Offline",
-        empdate: "14/06/21"
-    },
-    {
-        id: 3,
-        image: "https://randomuser.me/api/portraits/men/3.jpg",
-        name: "Laurent Michael",
-        email: "laurent@simmmpale.com",
-        role1: "Executive",
-        role2: "Projects",
-        status: "Online",
-        empdate: "14/06/21"
-    },
-    {
-        id: 4,
-        image: "https://randomuser.me/api/portraits/men/4.jpg",
-        name: "Freduardo Hill",
-        email: "freduardo@simmmpale.com",
-        role1: "Manager",
-        role2: "Organization",
-        status: "Online",
-        empdate: "14/06/21"
-    },
-    {
-        id: 5,
-        image: "https://randomuser.me/api/portraits/men/5.jpg",
-        name: "Daniel Thomas",
-        email: "daniel@simmmpale.com",
-        role1: "Programmer",
-        role2: "Developer",
-        status: "Offline",
-        empdate: "14/06/21"
-    },
-    {
-        id: 6,
-        image: "https://randomuser.me/api/portraits/men/6.jpg",
-        name: "Mark Wilson",
-        email: "mark@simmmpale.com",
-        role1: "Designer",
-        role2: "UI/UX Design",
-        status: "Offline",
-        empdate: "14/06/21"
-    },
-    {
-        id: 7,
-        image: "https://randomuser.me/api/portraits/men/9.jpg",
-        name: "Westside Gunn",
-        email: "bleed@reality.com",
-        role1: "QA",
-        role2: "Project Lead",
-        status: "Online",
-        empdate: "14/06/21"
-    }
+    { id: 1, image: "https://randomuser.me/api/portraits/women/1.jpg", name: "Esthera Jackson", email: "esthera@simmmpale.com", role1: "Manager", role2: "Organization", status: "Online", empdate: "2021-06-14" },
+    { id: 2, image: "https://randomuser.me/api/portraits/women/2.jpg", name: "Alexa Liras", email: "alexa@simmmpale.com", role1: "Programmer", role2: "Developer", status: "Offline", empdate: "2021-06-14" },
+    { id: 3, image: "https://randomuser.me/api/portraits/men/3.jpg", name: "Johnny Joestar", email: "laurent@simmmpale.com", role1: "Executive", role2: "Projects", status: "Online", empdate: "2021-06-14" },
+    { id: 4, image: "https://randomuser.me/api/portraits/men/4.jpg", name: "Freduardo Hill", email: "freduardo@simmmpale.com", role1: "Manager", role2: "Organization", status: "Online", empdate: "2021-06-14" },
+    { id: 5, image: "https://randomuser.me/api/portraits/men/5.jpg", name: "Gyro Zeppeli", email: "daniel@simmmpale.com", role1: "Programmer", role2: "Developer", status: "Offline", empdate: "2021-06-14" },
+    { id: 6, image: "https://randomuser.me/api/portraits/men/6.jpg", name: "Mark Wilson", email: "mark@simmmpale.com", role1: "Designer", role2: "UI/UX Design", status: "Offline", empdate: "2021-06-14" },
+    { id: 7, image: "https://randomuser.me/api/portraits/men/9.jpg", name: "Westside Gunn", email: "bleed@reality.com", role1: "QA", role2: "Project Lead", status: "Online", empdate: "2021-06-14" }
 ];
 
+// --- Sub-Component: Edit User Form ---
+const EditUserForm = ({
+    user,
+    onSave,
+    onClose
+}: {
+    user: UserProps;
+    onSave: (id: number, data: Partial<UserProps>) => void;
+    onClose: () => void;
+}) => {
+    const { register, handleSubmit, control, formState: { errors } } = useForm<UserProps>({
+        defaultValues: user
+    });
+
+    const onSubmit = (data: UserProps) => {
+        onSave(user.id, data);
+        onClose(); // Close the dialog on successful save
+    };
+
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Stack gap={4}>
+                <Grid templateColumns="110px 1fr" alignItems="start" gap={4}>
+                    <Text fontWeight="semibold" textAlign="right" mt={2}>Name</Text>
+                    <Stack gap={1}>
+                        <Input {...register("name", { required: "Name is required" })} variant="subtle" />
+                        {errors.name && <Text color="red.400" fontSize="xs">{errors.name.message}</Text>}
+                    </Stack>
+                </Grid>
+
+                <Grid templateColumns="110px 1fr" alignItems="start" gap={4}>
+                    <Text fontWeight="semibold" textAlign="right" mt={2}>Email</Text>
+                    <Stack gap={1}>
+                        <Input
+                            {...register("email", {
+                                required: "Email is required",
+                                pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid email format" }
+                            })}
+                            variant="subtle"
+                        />
+                        {errors.email && <Text color="red.400" fontSize="xs">{errors.email.message}</Text>}
+                    </Stack>
+                </Grid>
+
+                <Grid templateColumns="110px 1fr" alignItems="center" gap={4}>
+                    <Text fontWeight="semibold" textAlign="right">Role</Text>
+                    {/* <Stack gap={1}>
+                        <Input {...register("role1", { required: "Role is required" })} variant="subtle" />
+                        {errors.role1 && <Text color="red.400" fontSize="xs">{errors.role1.message}</Text>}
+                    </Stack> */}
+
+                    <Controller
+                        name="role1"
+                        control={control}
+                        render={({ field }) => (
+                            <Menu.Root
+                                onSelect={(details) => field.onChange(details.value)}
+                            >
+                                <Menu.Trigger asChild>
+                                    <Button variant="outline" size="sm" alignSelf={"flex-start"} display={"flex"} alignContent={"center"}>
+                                        {field.value || "Select Role"} <ChevronDown />
+                                    </Button>
+                                </Menu.Trigger>
+                                <Portal>
+                                    <Menu.Positioner>
+                                        <Menu.Content>
+                                            <Menu.Item value="Assistant">Assistant</Menu.Item>
+                                            <Menu.Item value="Manager">Manager</Menu.Item>
+                                            <Menu.Item value="Lead">Lead</Menu.Item>
+                                            <Menu.Item value="Intern">Intern</Menu.Item>
+                                            <Menu.Item value="Apprentice">Apprentice</Menu.Item>
+                                            <Menu.Item value="Programmer">Programmer</Menu.Item>
+                                            <Menu.Item value="Executive">Executive</Menu.Item>
+                                            <Menu.Item value="Designer">Designer</Menu.Item>
+                                        </Menu.Content>
+                                    </Menu.Positioner>
+                                </Portal>
+                            </Menu.Root>
+                        )}
+                    />
+                </Grid>
+
+                <Grid templateColumns="110px 1fr" alignItems="center" gap={4}>
+                    <Text fontWeight="semibold" textAlign="right">Department</Text>
+
+                    <Controller
+                        name="role2"
+                        control={control}
+                        render={({ field }) => (
+                            <Menu.Root
+                                onSelect={(details) => field.onChange(details.value)}
+                            >
+                                <Menu.Trigger asChild>
+                                    <Button variant="outline" size="sm" alignSelf={"flex-start"} display={"flex"}>
+                                        {field.value || "Select Department"} <ChevronDown />
+                                    </Button>
+                                </Menu.Trigger>
+                                <Portal>
+                                    <Menu.Positioner>
+                                        <Menu.Content>
+                                            <Menu.Item value="FrontEnd">FrontEnd</Menu.Item>
+                                            <Menu.Item value="Node">Node</Menu.Item>
+                                            <Menu.Item value="Java">Java</Menu.Item>
+                                            <Menu.Item value="DevOps">DevOps</Menu.Item>
+                                            <Menu.Item value="Marketing">Marketing</Menu.Item>
+                                            <Menu.Item value="Mobile">Mobile</Menu.Item>
+                                            <Menu.Item value="Database">Database</Menu.Item>
+                                            <Menu.Item value="UI/UX">UI/UX</Menu.Item>
+                                        </Menu.Content>
+                                    </Menu.Positioner>
+                                </Portal>
+                            </Menu.Root>
+                        )}
+                    />
+                </Grid>
+
+                <Grid templateColumns="110px 1fr" alignItems="center" gap={4}>
+                    <Text fontWeight="semibold" textAlign="right">Status</Text>
+                    <Controller
+                        name="status"
+                        control={control}
+                        render={({ field }) => (
+                            <RadioGroup.Root
+                                value={field.value}
+                                onValueChange={(details) => field.onChange(details.value)}
+                                colorPalette="blue"
+                            >
+                                <HStack gap="6">
+                                    <RadioGroup.Item value="Online">
+                                        <RadioGroup.ItemHiddenInput />
+                                        <RadioGroup.ItemIndicator />
+                                        <RadioGroup.ItemText>Online</RadioGroup.ItemText>
+                                    </RadioGroup.Item>
+                                    <RadioGroup.Item value="Offline">
+                                        <RadioGroup.ItemHiddenInput />
+                                        <RadioGroup.ItemIndicator />
+                                        <RadioGroup.ItemText>Offline</RadioGroup.ItemText>
+                                    </RadioGroup.Item>
+                                </HStack>
+                            </RadioGroup.Root>
+                        )}
+                    />
+                </Grid>
+
+                <Grid templateColumns="110px 1fr" alignItems="center" gap={4}>
+                    <Text fontWeight="semibold" textAlign="right">Employed</Text>
+                    <Input type="date" {...register("empdate")} variant="subtle" />
+                </Grid>
+
+                <Grid templateColumns="1fr 1fr" gap={4} mt={4}>
+                    <Dialog.ActionTrigger asChild>
+                        <Button variant="surface">Cancel</Button>
+                    </Dialog.ActionTrigger>
+                    <Button type="submit" colorPalette="blue">Save Changes</Button>
+                </Grid>
+            </Stack>
+        </form>
+    );
+};
+
+// --- Main Component ---
 const Userz: React.FC = () => {
-    // Define column configuration specifically for UserProps
+    const [data, setData] = useState<UserProps[]>(usersData);
+    const [openDialogId, setOpenDialogId] = useState<number | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSave = (id: number, updatedUser: Partial<UserProps>) => {
+        setData((prevData) =>
+            prevData.map((user) => (user.id === id ? { ...user, ...updatedUser } : user))
+        );
+    };
+
+    const filteredData = React.useMemo(() => {
+        const search = searchQuery.toLowerCase();
+        return data.filter((user) =>
+            Object.values(user).some(value =>
+                String(value).toLowerCase().includes(search)
+            )
+        );
+    }, [data, searchQuery]);
+
     const columns: Column<UserProps>[] = [
         {
             header: "AUTHOR",
@@ -117,8 +255,8 @@ const Userz: React.FC = () => {
             accessor: "status",
             render: (user) => (
                 <Badge
-                    bg={user.status === "Online" ? "green" : "gray"}
-                    variant="subtle"
+                    colorPalette={user.status === "Online" ? "green" : "gray"}
+                    variant="solid"
                     px={2}
                     borderRadius="full"
                 >
@@ -129,26 +267,69 @@ const Userz: React.FC = () => {
         {
             header: "EMPLOYED",
             accessor: "empdate",
-            render: (user) => (
-                <Text fontWeight={"medium"}>
-                    {user.empdate}
-                </Text>
-            ),
+            render: (user) => <Text fontWeight="medium">{user.empdate}</Text>,
         },
         {
             header: "",
-            accessor: "actions",
-            render: () => (<Button bg="transparent">Edit</Button>),
+            accessor: "id",
+            render: (user) => (
+                <Dialog.Root
+                    key={user.id}
+                    open={openDialogId === user.id}
+                    onOpenChange={(details) => setOpenDialogId(details.open ? user.id : null)}
+                    placement="top"
+                    motionPreset="slide-in-bottom"
+                >
+                    <Dialog.Trigger asChild>
+                        <Button variant="ghost" size="sm">Edit</Button>
+                    </Dialog.Trigger>
+                    <Dialog.Backdrop />
+                    <Dialog.Positioner>
+                        <Dialog.Content bg="gray.800" color="white">
+                            <Dialog.Header>
+                                <Dialog.Title fontSize="xl">Edit User</Dialog.Title>
+                            </Dialog.Header>
+                            <Dialog.Body>
+                                <EditUserForm
+                                    user={user}
+                                    onSave={handleSave}
+                                    onClose={() => setOpenDialogId(null)}
+                                />
+                            </Dialog.Body>
+                            <Dialog.CloseTrigger />
+                        </Dialog.Content>
+                    </Dialog.Positioner>
+                </Dialog.Root>
+            ),
         },
     ];
 
     return (
-        <Box minH="100vh" width="100%" bg="rgb(225, 226, 239)" mt={2}>
+        <Box minH="100vh" width="100%" bg="rgb(225, 226, 239)" pt={4}>
             <Container maxW="container.lg">
-                {/* The reusable table handles the mapping and the styling */}
+
+                <Box mb={4} display="flex" justifyContent="flex-end">
+                    <InputGroup
+                        flex="1"
+                        maxW="300px"
+                        startElement={<LuSearch color="gray" />}
+                    >
+                        <Input
+                            placeholder="Search projects or status..."
+                            variant="outline"
+                            size={"sm"}
+                            bg="white"
+                            color="black"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            _placeholder={{ color: "gray.500" }}
+                        />
+                    </InputGroup>
+                </Box>
+
                 <DataTable
                     columns={columns}
-                    data={usersData}
+                    data={filteredData}
                     styles={{
                         cell: { background: "rgb(225, 226, 239)", fontWeight: "bold", fontSize: "md", color: "black" },
                         headerText: { color: "grey" }
@@ -159,5 +340,4 @@ const Userz: React.FC = () => {
     );
 };
 
-export default Userz;
-
+export default Userz;   

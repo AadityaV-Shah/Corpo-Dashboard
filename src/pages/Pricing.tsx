@@ -4,16 +4,15 @@ import { tiers } from "../data/pricing";
 
 const Pricing = () => {
     return (
-        <Box h={"100vh"} w={"100%"} bg={"rgb(225, 226, 239)"} pt={5}>
+        <Box minH={"100vh"} w={"100%"} bg={"rgb(225, 226, 239)"} pt={5} pb={{base:'20px'}}>
             <Container maxW="container.xl">
-                <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+                <Grid templateColumns={{ sm: 'repeat(1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
                     {tiers.map((item, index) => (
                         <Card.Root key={item.title} border="none">
                             <Card.Body
-                                // Using 'flex' direction and 'gap' explicitly or 'spaceY'
                                 display="flex"
                                 flexDirection="column"
-                                gap={index === 1 ? "15px" : "15px"} // Using pixel values to see a clear difference
+                                gap={index === 1 ? "15px" : "15px"} 
                                 bg={"#102271"}
                                 p={6}
                                 borderRadius="xl"

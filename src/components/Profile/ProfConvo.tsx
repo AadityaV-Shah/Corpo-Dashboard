@@ -7,8 +7,8 @@ import {
     Box,
     Button
 } from "@chakra-ui/react";
-import { DataTable } from "../components/DataTable";
-import type { Column } from "../components/DataTable";
+import { DataTable } from "../DataTable";
+import type { Column } from "../DataTable";
 
 interface ConvoProps {
     id: number;
@@ -71,7 +71,7 @@ const ProfConvo: React.FC = () => {
     ]
 
     return (
-        <Stack alignContent={"flex-start"} gap={2} bg={"white"} p={5} rounded={"xl"} w={"100%"}>
+        <Stack alignContent={"flex-start"} gap={2} bg={"white"} p={5} rounded={"xl"} flex={1}>
             <Text fontWeight={"medium"} color={"black"} fontSize={"xl"}>Conversations</Text>
             <DataTable
                 columns={columns}

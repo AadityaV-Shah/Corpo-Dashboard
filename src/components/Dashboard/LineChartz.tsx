@@ -1,5 +1,54 @@
-import { Chart, useChart, ChartTooltip } from "@chakra-ui/charts"
+import { Chart, useChart } from "@chakra-ui/charts"
+import { Box, Stack, Text, Flex, HStack, Span } from "@chakra-ui/react"
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import type { TooltipContentProps } from "recharts"
+
+const CustomChartTooltip = (props: Partial<TooltipContentProps<string | number, string>>) => {
+    const { payload, label, active } = props
+
+    if (!active || !payload || payload.length === 0) return null
+
+    return (
+        <Stack
+            minW="8rem"
+            gap="1"
+            rounded="l2"
+            bg="bg.panel"
+            px="2.5"
+            py="1"
+            textStyle="xs"
+            shadow="md"
+        >
+            <Text fontWeight="medium" color="white">
+                {label}
+            </Text>
+            <Box>
+                {payload.map((item, index) => (
+                    <Flex
+                        gap="1.5"
+                        key={index}
+                        wrap="wrap"
+                        align="center"
+                    >
+                        <HStack justify="space-between" flex="1">
+                            <Span color="white">
+                                {item.name}
+                            </Span>
+                            <Text
+                                fontFamily="mono"
+                                fontWeight="medium"
+                                fontVariantNumeric="tabular-nums"
+                                color="white"
+                            >
+                                {item.value?.toLocaleString()}
+                            </Text>
+                        </HStack>
+                    </Flex>
+                ))}
+            </Box>
+        </Stack>
+    )
+}
 
 const LineChartz = () => {
 
@@ -34,7 +83,7 @@ const LineChartz = () => {
                 <Tooltip
                     animationDuration={100}
                     cursor={false}
-                    content={<ChartTooltip />}
+                    content={<CustomChartTooltip />}
                 />
 
                 <Line

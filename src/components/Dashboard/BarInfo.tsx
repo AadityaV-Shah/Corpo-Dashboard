@@ -8,11 +8,11 @@ import LineChartz from "./LineChartz";
 
 const BarInfo = () => {
     return (
-        <Flex justifyContent="space-between" alignItems="center" gap={5}>
+        <Box display={"flex"} flexDirection={{base:'column', lg:'row'}} alignItems="center" gap={5} justifyContent={{ base: "center", lg: "space-between" }}>
 
             {/* Bar chart section */}
 
-            <Box w="50%" h="auto" mt="8" px="5" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
+            <Box w={{ base: '100%', lg: '50%' }} h="auto" mt="8" px="5" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
                 <Stack gap="4">
                     <BarChart />
                     <Box mt="2">
@@ -60,14 +60,14 @@ const BarInfo = () => {
 
             {/* Line chart section */}
 
-            <Box w="50%" h="590px" mt="8" px="5" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
+            <Box w={{ base: '100%', lg: '50%' }} h={{base:'auto', lg:'590px'}} mt="8" px="5" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
                 <Stack gap={1}>
                     <Text fontSize={20} fontWeight={"bold"}>Sales Overview</Text>
                     <HStack><Text color={"green"} fontWeight={"bold"}>(+5) more</Text><Text color={"grey"}>in 2021</Text></HStack>
                 </Stack>
                 <LineChartz />
             </Box>
-        </Flex>
+        </Box>
     );
 };
 
