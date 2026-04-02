@@ -45,16 +45,16 @@ const Navbar = () => {
                 align="center"
             >
                 <HStack>
-                    <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="gray" display={{ sm: 'none', md: 'none', lg: 'block' }}>
+                    <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="gray" display={{ base: 'none', md: 'none', lg: 'block' }}>
                         PAGES /
                     </Text>
-                    <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="black" display={{ sm: 'none', md: 'none', lg: 'block' }}>
+                    <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="black" display={{ base: 'none', md: 'none', lg: 'block' }}>
                         WELCOME TO TRADEMASTERPRO!
                     </Text>
                 </HStack>
 
                 {/* Center: Navigation Links */}
-                <HStack gap="8" display={{ sm: "none", md: "none", lg: 'flex' }}>
+                <HStack gap="8" display={{ base: "none", md: "none", lg: 'flex' }}>
 
                     <HStack gap="6" color="gray.600" display={{ base: 'none', md: 'none', lg: 'flex' }}>
                         <FaFacebook color="gray.500" size={20} cursor={"pointer"} />
@@ -68,7 +68,7 @@ const Navbar = () => {
                         px={1}
                         gap={2}
                         align="center"
-                        display={{ sm: 'none', md: 'none', lg: 'flex' }}
+                        display={{ base: 'none', md: 'none', lg: 'flex' }}
                     >
                         <Box w={"25px"} h={"25px"} display="flex"
                             alignItems="center"
