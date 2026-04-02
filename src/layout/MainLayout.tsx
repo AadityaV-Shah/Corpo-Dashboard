@@ -22,15 +22,15 @@ const MainLayout = () => {
         <Box w="100vw" minW={"sm"} h="100vh" display="flex">
 
             {/* Sidebar */}
-            <Box w="250px" bg="gray.900" color="white" display={{base:'none', md:'none', lg:'block'}}>
+            <Box w="250px" bg="gray.900" color="white" display={{ base: 'none', md: 'none', lg: 'block' }}>
                 <LeftSection />
             </Box>
 
             {/* Right Content */}
-            <Box flex="1" display="flex" flexDirection="column">
+            <Box flex="1" display="flex" flexDirection="column" overflowY={{ base: 'hidden', md: 'auto', lg: 'auto' }}>
                 <DashNav />
 
-                <Box ref={scrollRef} flex="1" h="100vh" overflowY="auto" css={{
+                <Box ref={scrollRef} flex="1" overflowY={{ base: 'hidden', md: 'auto', lg: 'auto' }} css={{
 
                     bg: "rgb(225, 226, 239)",
                     // For Chrome, Safari and Opera
