@@ -17,7 +17,7 @@ import About from './pages/About';
 const App: React.FC = () => {
   return (
     <>
-      <BrowserRouter basename="/Corpo-Dashboard/">
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={
             <>
