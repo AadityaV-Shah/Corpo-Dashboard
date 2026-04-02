@@ -27,10 +27,10 @@ const MainLayout = () => {
             </Box>
 
             {/* Right Content */}
-            <Box flex="1" display="flex" flexDirection="column" overflowY={{ base: 'hidden', md: 'auto', lg: 'auto' }}>
+            <Box flex="1" display="flex" flexDirection="column" overflow={"hidden"}>
                 <DashNav />
 
-                <Box ref={scrollRef} flex="1" overflowY={{ base: 'hidden', md: 'auto', lg: 'auto' }} css={{
+                <Box ref={scrollRef} flex="1" overflowY={"auto"} css={{
 
                     bg: "rgb(225, 226, 239)",
                     // For Chrome, Safari and Opera
