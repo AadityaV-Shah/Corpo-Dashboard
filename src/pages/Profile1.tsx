@@ -107,7 +107,7 @@ const Profile1: React.FC = () => {
                 >
 
                     <Box display={"flex"} justifyContent={"space-between"} alignContent={"center"} gap={4}>
-                        <Image src="/simon2.jpg" boxSize="70px" borderRadius="xl" display={{ sm: 'none', md: 'block' }} />
+                        <Image src="/simon2.jpg" boxSize="70px" borderRadius="xl" display={{ base: 'block', md: 'block', lg:'block' }} />
                         <Stack gap={0} alignContent={"center"} mt={2}>
                             <Text color={"black"} fontWeight={"medium"} fontSize={"20px"}>{profile.name || '-'}</Text>
                             <Text color={"grey"} fontSize={"15px"}>{userEmail}</Text>
