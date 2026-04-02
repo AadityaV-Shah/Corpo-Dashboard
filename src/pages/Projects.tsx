@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { supabaseApi } from "@/api/supabase";
-import { useForm, Controller } from "react-hook-form";
-import { Box, Text, Container, Image, Stack, Button, Badge, Dialog, HStack, Input, Grid, InputGroup } from "@chakra-ui/react";
-import { RadioGroup } from "@chakra-ui/react"
+import { Box, Text, Container, Image, Button, Badge, Dialog, HStack, Input, InputGroup } from "@chakra-ui/react";
 import { Progress } from "@chakra-ui/react"
 import { DataTable } from "../components/DataTable";
+import { GenericEditForm, type FormField } from "../components/GenericEditForm"; 
 import type { Column } from "../components/DataTable";
 import { LuSearch } from "react-icons/lu";
 
@@ -17,102 +16,58 @@ interface ProjProps {
     completion: number;
 }
 
+const PROJ_FIELDS: FormField<ProjProps>[] = [
+    {
+        name: "name",
+        label: "Name",
+        type: "text",
+        validation: { required: "Name is required" },
+    },
+    {
+        name: "budget",
+        label: "Budget",
+        type: "text",
+        validation: { required: "Budget is required" },
+    },
+    {
+        name: "status",
+        label: "Status",
+        type: "radio",
+        options: [
+            { label: "Working", value: "Working" },
+            { label: "Done", value: "Done" },
+            { label: "Cancelled", value: "Cancelled" },
+        ],
+    },
+    {
+        name: "completion",
+        label: "Completion (%)",
+        type: "number",
+        validation: {
+            required: "% is required",
+            valueAsNumber: true,
+            min: { value: 0, message: "Min value = 0" },
+            max: { value: 100, message: "Max value = 100" },
+        },
+    },
+];
+
 const EditProjForm = ({
     item,
     onSave,
-    onClose
+    onClose,
 }: {
     item: ProjProps;
     onSave: (id: number, data: Partial<ProjProps>) => void;
     onClose: () => void;
-}) => {
-    const { register, handleSubmit, control, formState: { errors } } = useForm<ProjProps>({
-        defaultValues: item
-    });
-
-    const onSubmit = (data: ProjProps) => {
-        onSave(item.id, data);
-        onClose();
-    };
-
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack gap={4}>
-                <Grid templateColumns="120px 1fr" alignItems="center" gap={4}>
-                    <Text fontWeight="semibold" textAlign="right" mt={2}>Name</Text>
-                    <Stack>
-                        <Input {...register("name", { required: "Name is required" })} variant="subtle" />
-                        {errors.name && <Text color="red.400" fontSize="xs">{errors.name.message}</Text>}
-                    </Stack>
-                </Grid>
-
-                <Grid templateColumns="120px 1fr" alignItems="center" gap={4}>
-                    <Text fontWeight="semibold" textAlign="right">Budget</Text>
-                    <Stack>
-                        <Input {...register("budget", { required: "Budget is required" })} variant="subtle" />
-                        {errors.budget && <Text color="red.400" fontSize="xs">{errors.budget.message}</Text>}
-                    </Stack>
-                </Grid>
-
-                <Grid templateColumns="120px 1fr" alignItems="center" gap={4}>
-                    <Text fontWeight="semibold" textAlign="right">Status</Text>
-                    <Controller
-                        name="status"
-                        control={control}
-                        render={({ field }) => (
-
-                            <RadioGroup.Root
-                                value={field.value}
-                                onValueChange={(details) => field.onChange(details.value)}
-                                colorPalette="blue"
-                            >
-                                <HStack gap="6">
-                                    <RadioGroup.Item value="Working" pointerEvents="auto">
-                                        <RadioGroup.ItemHiddenInput />
-                                        <RadioGroup.ItemIndicator />
-                                        <RadioGroup.ItemText>Working</RadioGroup.ItemText>
-                                    </RadioGroup.Item>
-
-                                    <RadioGroup.Item value="Done" pointerEvents="auto">
-                                        <RadioGroup.ItemHiddenInput />
-                                        <RadioGroup.ItemIndicator />
-                                        <RadioGroup.ItemText>Done</RadioGroup.ItemText>
-                                    </RadioGroup.Item>
-
-                                    <RadioGroup.Item value="Cancelled" pointerEvents="auto">
-                                        <RadioGroup.ItemHiddenInput />
-                                        <RadioGroup.ItemIndicator />
-                                        <RadioGroup.ItemText>Cancelled</RadioGroup.ItemText>
-                                    </RadioGroup.Item>
-                                </HStack>
-                            </RadioGroup.Root>
-                        )}
-                    />
-                </Grid>
-
-                <Grid templateColumns="120px 1fr" alignItems="center" gap={4}>
-                    <Text fontWeight="semibold" textAlign="right">Completion(%)</Text>
-                    <Stack>
-                        <Input type="number" {...register("completion", {
-                            required: "% is required", valueAsNumber: true, min: { value: 0, message: "Min value = 0" },
-                            max: { value: 100, message: "Max value = 100" }
-                        })} variant="subtle" />
-                        {errors.completion && <Text color="red.400" fontSize="xs">{errors.completion.message}</Text>}
-                    </Stack>
-                </Grid>
-
-                <Grid templateColumns="1fr 1fr" alignItems="center" gap={4}>
-                    <Dialog.ActionTrigger asChild>
-                        <Button variant={"surface"}>Cancel</Button>
-                    </Dialog.ActionTrigger>
-                    <Button type="submit" colorPalette={"blue"}>
-                        Save Changes
-                    </Button>
-                </Grid>
-            </Stack>
-        </form>
-    );
-};
+}) => (
+    <GenericEditForm<ProjProps>
+        defaultValues={item}
+        fields={PROJ_FIELDS}
+        onSubmit={(data) => onSave(item.id, data)}
+        onClose={onClose}
+    />
+);
 
 
 //Main Component
@@ -188,7 +143,9 @@ const Projects: React.FC = () => {
             accessor: "money",
             render: (item) => (
                 <Box gap={0}>
-                    <Text fontWeight="bold" lineHeight="short">{item.budget}</Text>
+                    <Text fontWeight="bold" lineHeight="short">
+                        ${item.budget ? Number(item.budget).toLocaleString('en-US') : "—"}
+                    </Text>
                 </Box>
             )
         },

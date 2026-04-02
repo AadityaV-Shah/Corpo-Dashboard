@@ -35,9 +35,11 @@ const LoginForm: React.FC = () => {
 
   return (
     <Flex w="100vw" h="100vh">
-      {/* Left Half Container */}
+
+
+      {/* Left Half Container when LG */}
       <Flex
-        w="50%"
+        w={{sm:'100%', md:'100%', lg:'50%'}}
         h="full"
         align="center"
         justify="center"
@@ -89,7 +91,7 @@ const LoginForm: React.FC = () => {
         h="100vh"
         align="center"
         justify="center"
-        display={{ base: "none", md: "flex" }}
+        display={{ sm: "none", md: "none", lg:'flex' }}
         bgImage="url('/demonz.jpg')"
       >
         <Text fontFamily={"Poppins"} fontSize={'90px'}>TradeMasterPro</Text>

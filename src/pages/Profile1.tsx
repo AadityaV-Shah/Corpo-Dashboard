@@ -126,7 +126,7 @@ const Profile1: React.FC = () => {
                                     bg={activeTab === item.name ? "black" : "white"}
                                     display={"flex"} gap={1} p={2} rounded={"xl"} cursor={"pointer"}
                                     transition='0.3s'
-                      
+
                                     _hover={{ color: 'white', bg: 'black', p: '2', transform: 'translateY(-2px)' }}
                                 >
                                     {item.image}{item.name}
@@ -146,7 +146,7 @@ const Profile1: React.FC = () => {
                             <MenuContent borderRadius="xl" boxShadow="lg" p={2} bg={"white"} zIndex={2000} position={"absolute"} top={"-100%"} right={"110%"}>
                                 {ProvNavData.map((item) => (
                                     <MenuItem
-                                        value={item.name} // v3 requires a value prop
+                                        value={item.name}
                                         key={item.name}
                                         onClick={() => setActiveTab(item.name)}
                                         cursor="pointer"
@@ -170,10 +170,11 @@ const Profile1: React.FC = () => {
             {activeTab === "Overview" && (
                 <Container mt={"80px"}>
                     <Box
-                        gridTemplateColumns={{ base: 'repeat(1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
+                        gridTemplateColumns={{ base: 'repeat(1fr)', md: 'repeat(1fr)', lg: 'repeat(4, 1fr)' }}
                         display={"flex"}
-                        flexDirection={{ base: "column", md: "row" }}
+                        flexDirection={{ base: "column", md: "column", lg: 'row' }}
                         gap={3}
+                        pb={{ base: '20px', md: 'none', lg: 'none' }}
                         zIndex={1000}
                     >
                         <PlatSettings />

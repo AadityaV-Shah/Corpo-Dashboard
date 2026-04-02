@@ -6,7 +6,8 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-import { MdMoreVert, MdLogout } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
+import { ChevronDown } from "lucide-react";
 
 export default function OptionsMenu() {
     return (
@@ -17,19 +18,16 @@ export default function OptionsMenu() {
                     aria-label="Options"
                     variant="outline"
                     color="black"
-                    borderColor="gray.600"
                     rounded={'2xl'}
                     bg="transparent"
                     _hover={{
                         borderColor: "white",
                         bg: "whiteAlpha.100",
-                    }}
-                    _active={{
-                        bg: "whiteAlpha.200",
+                        focusRing: 'none',
                     }}
                     transition="all 0.2s"
                 >
-                    <Icon as={MdMoreVert} boxSize={5} />
+                    <Icon as={ChevronDown} boxSize={5} />
                 </IconButton>
             </Menu.Trigger>
 
@@ -46,7 +44,7 @@ export default function OptionsMenu() {
                     <Link to="/profile1">
                         <Menu.Item value="profile" _hover={{ bg: "#181e29" }}>
                             <Text>Profile</Text>
-                        </Menu.Item>
+                        </Menu.Item>    
                     </Link>
 
                     <Menu.Item value="account" _hover={{ bg: "#181e29" }}>

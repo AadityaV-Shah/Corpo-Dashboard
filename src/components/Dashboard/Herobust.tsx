@@ -1,11 +1,5 @@
 import { Box, Flex, HStack, Stack, Image, Text, Button, Link } from "@chakra-ui/react";
-import { LayoutDashboard, User, PencilLine, WalletMinimal, ArrowRight } from "lucide-react";
-import { Input, Group, InputElement } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react"
-import { FaWallet } from "react-icons/fa";
-import { CiGlobe } from "react-icons/ci";
-import { FaFile } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
 
 const Herobust = () => {
     return (

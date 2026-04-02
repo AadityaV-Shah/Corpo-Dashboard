@@ -36,7 +36,7 @@ const Navbar = () => {
                 </HStack>
 
                 {/* Center: Navigation Links */}
-                <HStack gap="8" display={{ base: "none", md: "flex" }}>
+                <HStack gap="8" display={{ base: 'flex', md: 'flex', lg:'flex' }}>
                     {/* <Link href="#" variant="plain" _hover={{ textDecoration: "none" }}>
                         <HStack gap="2" color="gray.600">
                             <User size={16} />
@@ -60,6 +60,7 @@ const Navbar = () => {
                     size="sm"
                     fontSize="xs"
                     _hover={{ bg: "gray.700" }}
+                    display={{sm:'none', md:'none', lg:'flex'}}
                 >
                     Free Download
                 </Button>

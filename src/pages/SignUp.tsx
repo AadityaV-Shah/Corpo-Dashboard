@@ -40,17 +40,17 @@ const SignUp: React.FC = () => {
 
     return (
 
-        <Box minH={"100vh"} minW={"100vw"} bg={"rgb(207, 205, 205)"} alignContent={"center"} justifyItems={"center"} position={"relative"}>
+        <Box h={"100vh"} w={"100vw"} bg={"rgb(207, 205, 205)"} alignContent={"center"} justifyItems={"center"} position={"relative"}>
             <Box
                 w="full"
                 h="300px"
                 bgImage="url('/demonz.jpg')"
                 position="absolute"
                 left={0}
-                top={0}
+                top={0}     
                 roundedBottom="xl"
             />
-            <Box position={"absolute"} h={"auto"} w={"400px"} gap={4} bg={"white"} p={5} rounded={"xl"} top={100} left={550}>
+            <Box position={"absolute"} h={"auto"} w={"400px"} gap={4} bg={"white"} p={5} rounded={"xl"} top={{base:'20', md:'100', lg:'100'}} left={{base:'100', md:'100', lg:'550'}}>
                 <Stack gap={6}>
                     <Box justifyItems={"center"}> <Text color={"black"} fontWeight={"medium"} fontSize={"xl"}>Register with</Text> </Box>
 

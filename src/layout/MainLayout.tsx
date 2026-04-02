@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Footer from "@/components/Footer";
 import LeftSection from "@/components/LeftSection";
 import { Box } from "@chakra-ui/react";
-import DashNav from "@/components/DashNav"
+import DashNav from "@/components/Dashboard/DashNav"
 import { Outlet, useLocation } from "react-router-dom";
 
 const MainLayout = () => {
@@ -22,7 +22,7 @@ const MainLayout = () => {
         <Box w="100vw" minW={"sm"} h="100vh" display="flex">
 
             {/* Sidebar */}
-            <Box w="250px" bg="gray.900" color="white">
+            <Box w="250px" bg="gray.900" color="white" display={{base:'none', md:'none', lg:'block'}}>
                 <LeftSection />
             </Box>
 
