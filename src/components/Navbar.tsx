@@ -60,7 +60,7 @@ const Navbar = () => {
                     size="sm"
                     fontSize="xs"
                     _hover={{ bg: "gray.700" }}
-                    display={{sm:'none', md:'none', lg:'flex'}}
+                    display={{base:'none', md:'none', lg:'flex'}}
                 >
                     Free Download
                 </Button>
