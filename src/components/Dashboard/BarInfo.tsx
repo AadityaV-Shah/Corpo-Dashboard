@@ -28,7 +28,7 @@ const BarInfo = () => {
                                 <FiUsers size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Users</Text>
                             </HStack>
-                            <Text fontSize="xl" fontWeight="bold">32,000</Text>
+                            <Text fontSize="lg" fontWeight="bold">32,000</Text>
                         </Stack>
 
                         <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" flexShrink={0}>
@@ -36,7 +36,7 @@ const BarInfo = () => {
                                 <FaRocket size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Clicks</Text>
                             </HStack>
-                            <Text fontSize="xl" fontWeight="bold">2,43 M</Text>
+                            <Text fontSize="lg" fontWeight="bold">2,43 M</Text>
                         </Stack>
 
                         <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" flexShrink={0}>
@@ -44,7 +44,7 @@ const BarInfo = () => {
                                 <FaShoppingCart size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Sales</Text>
                             </HStack>
-                            <Text fontSize="xl" fontWeight="bold">$2,400</Text>
+                            <Text fontSize="lg" fontWeight="bold">$2,400</Text>
                         </Stack>
 
                         <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" flexShrink={0}>
@@ -52,7 +52,7 @@ const BarInfo = () => {
                                 <FaToolbox size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Items</Text>
                             </HStack>
-                            <Text fontSize="xl" fontWeight="bold">320</Text>
+                            <Text fontSize="lg" fontWeight="bold">320</Text>
                         </Stack>
                     </HStack>
                 </Stack>
