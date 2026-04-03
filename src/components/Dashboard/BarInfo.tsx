@@ -12,7 +12,7 @@ const BarInfo = () => {
 
             {/* Bar chart section */}
 
-            <Box w={{ base: '100%', lg: '50%' }} h="auto" mt="8" px="5" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
+            <Box w={{ base: '100%', lg: '50%' }} h="auto" mt="8" px="2" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
                 <Stack gap="4">
                     <BarChart />
                     <Box mt="2">
