@@ -12,7 +12,7 @@ const BarInfo = () => {
 
             {/* Bar chart section */}
 
-            <Box w={{ base: '100%', lg: '50%' }} h="auto" mt="8" px="2" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
+            <Box w={{ base: '100%', lg: '50%' }} h="auto" mt="8" px="5" py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" boxShadow={"lg"}>
                 <Stack gap="4">
                     <BarChart />
                     <Box mt="2">
@@ -23,7 +23,7 @@ const BarInfo = () => {
                     </Box>
 
                     <HStack w="full" h="auto" gap="1" pt="5px" justifyContent="space-between" overflow={"hidden"}>
-                        <Stack w="25%" px="5" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" flexShrink={0}>
+                        <Stack w="25%" px="5" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center">
                             <HStack gap="2">
                                 <FiUsers size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Users</Text>
@@ -31,7 +31,7 @@ const BarInfo = () => {
                             <Text fontSize="lg" fontWeight="bold">32,000</Text>
                         </Stack>
 
-                        <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" flexShrink={0}>
+                        <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center">
                             <HStack gap="2">
                                 <FaRocket size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Clicks</Text>
@@ -39,7 +39,7 @@ const BarInfo = () => {
                             <Text fontSize="lg" fontWeight="bold">2,43 M</Text>
                         </Stack>
 
-                        <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" flexShrink={0}>
+                        <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center">
                             <HStack gap="2">
                                 <FaShoppingCart size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Sales</Text>
@@ -47,7 +47,7 @@ const BarInfo = () => {
                             <Text fontSize="lg" fontWeight="bold">$2,400</Text>
                         </Stack>
 
-                        <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center" flexShrink={0}>
+                        <Stack w="25%" px="2" display="flex" py="2" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="center">
                             <HStack gap="2">
                                 <FaToolbox size="20px" color="teal" />
                                 <Text fontSize="sm" fontWeight="medium" color="grey">Items</Text>

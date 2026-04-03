@@ -52,7 +52,7 @@ const Mentors = () => {
                                         position="absolute"
                                         top="0"
                                         left="-6"
-                                        w="390px"
+                                        w={{base:'300px', lg:'390px'}}
                                         h="auto"
                                         display="flex"
                                         alignItems="center"
