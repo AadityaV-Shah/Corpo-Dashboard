@@ -20,7 +20,7 @@ import { Menu as MenuIcon } from "lucide-react";
 import { Box as Blox, Wrench } from "lucide-react";
 import { HandFist } from "lucide-react";
 import PlatSettings from '@/components/Profile/PlatSettings';
-import ProfInfo from '@/components/Profile/ProfInfo';
+import ProfInfo from '@/components/Profile/ProfInfo';           
 import ProfConvo from '@/components/Profile/ProfConvo';
 import ProfCard from '@/components/Profile/ProfCard';
 import type { ProfInfoProps } from '@/components/Profile/ProfInfo';
@@ -94,7 +94,7 @@ const Profile1: React.FC = () => {
 
                     /* CENTERING LOGIC */
                     top={50}
-                    left="50%"
+                    left="50%"  
                     transform="translateX(-50%)"
 
                     p={4}

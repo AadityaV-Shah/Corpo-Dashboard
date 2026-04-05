@@ -1,5 +1,6 @@
 import { Box, Flex, HStack, Stack, Image, Text, Button, Link } from "@chakra-ui/react";
 import { ArrowRight } from "lucide-react";
+import CButton from "@/components/Button";
 
 const Herobust = () => {
     return (
@@ -12,7 +13,17 @@ const Herobust = () => {
                     <Text fontSize="lg" fontWeight="bold">Learn to Trade from Millionaire Mentors</Text>
                     <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, animi?</Text>
                     <br></br>
-                    <Button borderWidth="2px" borderColor="orange" mx="25px" bgColor="Orange" color="white" fontWeight="bold">Start Trading Today <ArrowRight /> </Button>
+
+                    <CButton
+                        label="Start Trading Today"
+                        variant="primary"
+                        size="md"
+                        rightIcon={<ArrowRight />}
+                        fullWidth={true}
+                        loading={false}
+                        style={{ width: '290px' }}
+                    />
+
                 </Stack>
                 <Box>
                     <Image src="https://cdn.corporatefinanceinstitute.com/assets/money-2.jpeg" borderRadius="xl" w="full" h="full" overflow="hidden" />
@@ -50,19 +61,9 @@ const Herobust = () => {
                     <Text>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, animi?
                     </Text>
-                    <Button
-                        mt={2}
-                        borderWidth="2px"
-                        borderColor="orange.400"
-                        bgColor="orange.400"
-                        color="white"
-                        fontWeight="bold"
-                        w="full"
-                    >
-                        <Flex align="center" gap={2}>
-                            Start Trading Today <ArrowRight />
-                        </Flex>
-                    </Button>
+
+                    <Button borderWidth="2px" borderColor="orange" mx="25px" bgColor="Orange" color="white" fontWeight="bold">Start Trading Today <ArrowRight /> </Button>
+
                 </Stack>
             </Box>
 
