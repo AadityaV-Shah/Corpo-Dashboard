@@ -7,7 +7,7 @@ const Herobust = () => {
         <Box mt="5" gap="5" h={{ base: 'auto' }} display={"flex"} flexDirection={{ base: 'column', lg: 'row' }} justifyContent={{ base: "center", lg: "space-between" }}>
 
             {/* LG SIZE herobust */}
-            <Box w={{ base: '100%', sm: '100%', md: '100%', lg: '50%' }} gap={1} h="300px" px="5" display={{ base: 'none', md: 'none', lg: 'flex' }} py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="top" justifyItems="center">
+            <Box w={{ base: '100%', sm: '100%', md: '100%', lg: '50%' }} gap={4} h="300px" px="5" display={{ base: 'none', md: 'none', lg: 'flex' }} py="5" bg="white" color="Black" borderRadius="xl" justifyContent="space-between" alignItems="top" justifyItems="center">
                 <Stack>
                     <Text fontSize="sm" color="gray" fontWeight="medium">Built By Traders, For Traders</Text>
                     <Text fontSize="lg" fontWeight="bold">Learn to Trade from Millionaire Mentors</Text>
@@ -21,7 +21,7 @@ const Herobust = () => {
                         rightIcon={<ArrowRight />}
                         fullWidth={true}
                         loading={false}
-                        style={{ width: '290px' }}
+                        style={{ width: 'fill' }}
                     />
 
                 </Stack>
@@ -62,7 +62,15 @@ const Herobust = () => {
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, animi?
                     </Text>
 
-                    <Button borderWidth="2px" borderColor="orange" mx="25px" bgColor="Orange" color="white" fontWeight="bold">Start Trading Today <ArrowRight /> </Button>
+                    <CButton
+                        label="Start Trading Today"
+                        variant="primary"
+                        size="md"
+                        rightIcon={<ArrowRight />}
+                        fullWidth={true}
+                        loading={false}
+                        style={{width:'fill', marginTop:'20px'}}
+                    />
 
                 </Stack>
             </Box>

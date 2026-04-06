@@ -8,6 +8,7 @@ import { LuSearch } from "react-icons/lu";
 import { DataTable } from "../components/DataTable";
 import type { Column } from "../components/DataTable";
 import { GenericEditForm, type FormField } from "../components/GenericEditForm";
+import CButton from "@/components/Button";
 
 // --- Interface ---
 interface UserProps {
@@ -188,7 +189,14 @@ const Userz: React.FC = () => {
                     motionPreset="slide-in-bottom"
                 >
                     <Dialog.Trigger asChild>
-                        <Button variant="ghost" size="sm">Edit</Button>
+                        <CButton 
+                            label="Edit"
+                            variant="ghost"
+                            size="md"
+                            fullWidth={true}
+                            loading={false}
+                            style={{width:'fill', color:'white'}}
+                        />
                     </Dialog.Trigger>
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
