@@ -92,7 +92,7 @@ const LoginForm: React.FC = () => {
         align="center"
         justify="center"
         display={{ base: "none", md: "none", lg:'flex' }}
-        bgImage="url('/demonz.jpg')"
+        bg="teal"
       >
         <Text fontFamily={"Poppins"} fontSize={'90px'}>TradeMasterPro</Text>
       </Flex>

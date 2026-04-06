@@ -146,41 +146,33 @@ const ProfInfo: React.FC = () => {
         <Stack alignContent="flex-start" gap={5} bg="white" p={5} rounded="xl" flex={1} overflow="hidden">
             <Text fontWeight="medium" color="black" fontSize="xl">Profile Information</Text>
 
-            <Stack alignContent="flex-start" gap={2} borderBottom="1px solid grey" pb={4}>
-                <Text fontWeight="medium" color="grey" fontSize="sm" lineHeight="tall" wordBreak="break-word">
+            <Stack alignContent={"flex-start"} gap={4}>
+                <Text fontWeight={"medium"} color={"grey"} fontSize={"sm"} lineHeight={"tall"} wordBreak={"break-word"}>
                     {profile.about || "—"}
                 </Text>
+
+                <Grid templateColumns={"max-content 1fr"} gap={2} rowGap={3}>
+                    <Text color={"black"} fontWeight={"medium"}>Full Name:</Text>
+                    <Text color={"grey"} wordBreak={"break-word"}>{profile.name || "—"}</Text>
+
+                    <Text color={"black"} fontWeight={"medium"}>Phone:</Text>
+                    <Text color={"grey"} wordBreak={"break-word"}>{profile.phone || "—"}</Text>
+
+                    <Text color={"black"} fontWeight={"medium"}>Email:</Text>
+                    <Text color={"grey"} wordBreak={"break-word"}>{userEmail || "—"}</Text>
+
+                    <Text color={"black"} fontWeight={"medium"}>Location:</Text>
+                    <Text color={"grey"} wordBreak={"break-word"}>{profile.location || "—"}</Text>
+
+                    <Text color={"black"} fontWeight={"medium"}>Socials:</Text>
+                    <Box display={"flex"} gap={4} color={"grey"} fontSize={"xl"}>
+                        <FaFacebook cursor={"pointer"} />
+                        <FaInstagram cursor={"pointer"} />
+                        <FaLinkedin cursor={"pointer"} />
+                        <FaGithub cursor={"pointer"} />
+                    </Box>
+                </Grid>
             </Stack>
-
-            <HStack align="flex-start">
-                <Text color="black" fontWeight="medium" flexShrink={0}>Full Name:</Text>
-                <Text color="grey" wordBreak="break-word" overflow="hidden">{profile.name || "—"}</Text>
-            </HStack>
-
-            <HStack align="flex-start">
-                <Text color="black" fontWeight="medium" flexShrink={0}>Phone:</Text>
-                <Text color="grey" wordBreak="break-word" overflow="hidden">{profile.phone || "—"}</Text>
-            </HStack>
-
-            <HStack align="flex-start">
-                <Text color="black" fontWeight="medium" flexShrink={0}>Email:</Text>
-                <Text color="grey" wordBreak="break-word" overflow="hidden">{userEmail || "—"}</Text>
-            </HStack>
-
-            <HStack align="flex-start">
-                <Text color="black" fontWeight="medium" flexShrink={0}>Location:</Text>
-                <Text color="grey" wordBreak="break-word" overflow="hidden">{profile.location || "—"}</Text>
-            </HStack>
-
-            <HStack>
-                <Text color="black" fontWeight="medium">Socials:</Text>
-                <Box display="flex" gap={4} color="grey" fontSize="xl">
-                    <FaFacebook cursor="pointer" />
-                    <FaInstagram cursor="pointer" />
-                    <FaLinkedin cursor="pointer" />
-                    <FaGithub cursor="pointer" />
-                </Box>
-            </HStack>
 
             <Dialog.Root
                 open={dialogOpen}

@@ -40,11 +40,11 @@ const SignUp: React.FC = () => {
 
     return (
 
-        <Box h={"100vh"} w={"100vw"} bg={"rgb(207, 205, 205)"} alignContent={"center"} justifyItems={"center"} position={"relative"}>
+        <Box h={"100vh"} w={"100vw"} bg="bg.emphasized" alignContent={"center"} justifyItems={"center"} position={"relative"}>
             <Box
                 w="full"
                 h="300px"
-                bgImage="url('/demonz.jpg')"
+                bg={"teal"}
                 position="absolute"
                 left={0}
                 top={0}     
