@@ -75,7 +75,7 @@ const Profile1: React.FC = () => {
             <Box
                 w="full"
                 h="100px"
-                bgImage="url('/demonz.jpg')"
+                bg='#11b798'
                 position="relative"
                 left={0}
                 top={0}
@@ -107,7 +107,7 @@ const Profile1: React.FC = () => {
                 >
 
                     <Box display={"flex"} justifyContent={"space-between"} alignContent={"center"} gap={4}>
-                        <Image src="/simon2.jpg" boxSize="70px" borderRadius="xl" display={{ base: 'block', md: 'block', lg:'block' }} />
+                        <Image src="/goat.webp" boxSize="70px" borderRadius="xl" display={{ base: 'block', md: 'block', lg:'block' }} />
                         <Stack gap={0} alignContent={"center"} mt={2}>
                             <Text color={"black"} fontWeight={"medium"} fontSize={"20px"}>{profile.name || '-'}</Text>
                             <Text color={"grey"} fontSize={"15px"}>{userEmail}</Text>

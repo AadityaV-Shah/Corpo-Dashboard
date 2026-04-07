@@ -1,3 +1,4 @@
+import MentorCard from "@/components/MarketCard";
 import { Box, Text, Container, Card, Grid, Stack, Icon } from "@chakra-ui/react";
 import { Cpu, Activity, CreditCard, BookOpen, ShoppingCart, HardHat, Users, Server, Globe } from "lucide-react";
 
@@ -28,33 +29,13 @@ const Markets = () => {
                     gap={6}
                 >
                     {marketsData.map((item) => (
-                        <Card.Root borderRadius="xl">
-                            <Card.Body display="flex"
-                                flexDirection="column"
-                                gap={"5"} // Using pixel values to see a clear difference
-                                bgImage="url('/designMentor.jpg')"
-                                bgSize="cover"
-                                borderRadius="xl"
-                                position={"relative"}
-                                fontFamily={"poppins"}>
-
-                                <Box
-                                    w="full"
-                                    h="auto"
-                                    display="flex"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    position="relative"
-                                >
-                                    <Icon as={item.icon} boxSize="50px" />
-                                </Box>
-
-                                <Stack w={"full"} align={"center"} gap={3}>
-                                    <Text fontSize={"25px"}>{item.name}</Text>
-                                    <Text fontSize={"16px"}>{item.desc}</Text>
-                                </Stack>
-                            </Card.Body>
-                        </Card.Root>
+                        <MentorCard
+                            iconic={item.icon}
+                            title={item.name}
+                            detail={item.desc}
+                            bgimage={"url('/designMentor.jpg')"}
+                            boxsize={"50px"}
+                        />
                     )
                     )}
                 </Grid>

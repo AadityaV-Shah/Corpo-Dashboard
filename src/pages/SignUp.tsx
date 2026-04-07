@@ -44,7 +44,7 @@ const SignUp: React.FC = () => {
             <Box
                 w="full"
                 h="300px"
-                bg={"teal"}
+                bg="#11b798"
                 position="absolute"
                 left={0}
                 top={0}     

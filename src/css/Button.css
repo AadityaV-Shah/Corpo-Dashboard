@@ -60,14 +60,14 @@
 }
 
 .btn-secondary {
-    background: rgba(59, 130, 246, 0.12);
-    color: #93c5fd;
-    border-color: rgba(59, 130, 246, 0.35);
+    background: rgb(241, 164, 22);
+    color: #fff;
 }
 
 .btn-secondary:hover:not(:disabled) {
-    background: rgba(59, 130, 246, 0.22);
-    border-color: rgba(59, 130, 246, 0.6);
+    background: rgb(255, 177, 32);
+    border-color: rgb(255, 177, 32);
+    box-shadow: 0 0 5px rgb(221, 156, 35);
 }
 
 .btn-ghost {

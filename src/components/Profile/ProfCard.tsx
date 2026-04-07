@@ -71,7 +71,7 @@ const ProfCard: React.FC = () => {
                             </Stack>
                             <Text fontSize={"sm"} color={"grey"} minH={'60px'}>
                                 {item.detail}
-                            </Text>
+                            </Text>     
                             <Box w="full" mt="auto">
                                 <Button border={"1px teal solid"} bg={'white'} color={'green'} _hover={{ bg: 'teal.50' }} w={'full'} focusRing={'none'}>
                                     View All

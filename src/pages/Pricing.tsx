@@ -1,6 +1,7 @@
 import { Box, Text, Container, Card, Grid, Button, Flex, Stack } from "@chakra-ui/react";
 import { Check } from "lucide-react";
 import { tiers } from "../data/pricing";
+import CButton from "@/components/Button";
 
 const Pricing = () => {
     return (
@@ -38,14 +39,19 @@ const Pricing = () => {
                                     </ul>
                                 </Box>
 
-                                <Button
+                                {/* <Button
                                     width="full"
                                     bg={index === 1 ? "orange.400" : "whiteAlpha.200"}
                                     _hover={{ bg: index === 1 ? "orange.600" : "whiteAlpha.400" }}
                                     color={index === 1 ? "white" : "white"}
                                 >
                                     {item.buttonText}
-                                </Button>
+                                </Button> */}
+
+                                <CButton 
+                                label={item.buttonText}
+                                variant={index === 1 ? "secondary" : "primary" }
+                                />
 
                                 {index === 1 && (
                                     <Box

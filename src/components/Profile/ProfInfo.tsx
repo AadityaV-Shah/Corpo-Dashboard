@@ -146,12 +146,12 @@ const ProfInfo: React.FC = () => {
         <Stack alignContent="flex-start" gap={5} bg="white" p={5} rounded="xl" flex={1} overflow="hidden">
             <Text fontWeight="medium" color="black" fontSize="xl">Profile Information</Text>
 
-            <Stack alignContent={"flex-start"} gap={4}>
+            <Stack alignContent={"flex-start"} gap={5}>
                 <Text fontWeight={"medium"} color={"grey"} fontSize={"sm"} lineHeight={"tall"} wordBreak={"break-word"}>
                     {profile.about || "—"}
                 </Text>
 
-                <Grid templateColumns={"max-content 1fr"} gap={2} rowGap={3}>
+                <Grid templateColumns={"max-content 1fr"} gap={3} rowGap={5}>
                     <Text color={"black"} fontWeight={"medium"}>Full Name:</Text>
                     <Text color={"grey"} wordBreak={"break-word"}>{profile.name || "—"}</Text>
 

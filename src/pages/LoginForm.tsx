@@ -37,7 +37,7 @@ const LoginForm: React.FC = () => {
     <Flex w="100vw" h="100vh">
 
 
-      {/* Left Half Container when LG */}
+      {/* Left Half Container */}
       <Flex
         w={{base:'100%', md:'100%', lg:'50%'}}
         h="full"
@@ -92,7 +92,7 @@ const LoginForm: React.FC = () => {
         align="center"
         justify="center"
         display={{ base: "none", md: "none", lg:'flex' }}
-        bg="teal"
+        bg="#11b798"
       >
         <Text fontFamily={"Poppins"} fontSize={'90px'}>TradeMasterPro</Text>
       </Flex>
