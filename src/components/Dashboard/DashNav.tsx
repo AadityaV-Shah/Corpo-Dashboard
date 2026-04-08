@@ -36,7 +36,7 @@ const Navbar = () => {
             <Flex
                 bg="rgb(225, 226, 239)" // Glassmorphism white with 70% opacity
                 backdropFilter="blur(10px)" // The blur effect
-                px="6"
+                px={{base:'3', md:'6', lg:'6'}}
                 py="4"
                 borderWidth="1px"
                 borderColor="white/20"
@@ -107,9 +107,11 @@ const Navbar = () => {
                     justifyContent="space-between"
                     w="full"
                 >
+                    <Box pr={"30px"}>
                     <MyPage />
+                    </Box>
 
-                    <HStack px={1} gap={2} align="center"> 
+                    <HStack px={0} gap={2} align="center"> 
                         <Box
                             display="flex"
                             alignItems="center"
