@@ -17,7 +17,7 @@ export const FieldMenu = ({
 }) => (
     <Menu.Root onSelect={(details) => onChange(details.value)}>
         <Menu.Trigger asChild>
-            <Button variant="outline" size="sm">
+            <Button variant="surface" size="sm">
                 {value || placeholder} <ChevronDown />
             </Button>
         </Menu.Trigger>

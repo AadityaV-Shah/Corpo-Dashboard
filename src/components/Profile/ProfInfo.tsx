@@ -181,7 +181,7 @@ const ProfInfo: React.FC = () => {
                 motionPreset="slide-in-bottom"
             >
                 <Dialog.Trigger asChild>
-                    <Button variant="ghost" size="sm">Edit</Button>
+                    <Button variant="surface" size="sm">Edit</Button>
                 </Dialog.Trigger>
                 <Dialog.Backdrop />
                 <Dialog.Positioner>

@@ -191,15 +191,8 @@ const Userz: React.FC = () => {
                     placement="top"
                     motionPreset="slide-in-bottom"
                 >
-                    <Dialog.Trigger asChild>
-                        <CButton
-                            label="Edit"
-                            variant="ghost"
-                            size="md"
-                            fullWidth={true}
-                            loading={false}
-                            style={{ width: 'fill', color: 'white' }}
-                        />
+                    <Dialog.Trigger>
+                        <Button variant="surface" size="sm" ml={5}>Edit</Button>
                     </Dialog.Trigger>
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
