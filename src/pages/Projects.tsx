@@ -3,7 +3,7 @@ import { supabaseApi } from "@/api/supabase";
 import { Box, Text, Container, Image, Button, Badge, Dialog, HStack, Input, InputGroup } from "@chakra-ui/react";
 import { Progress } from "@chakra-ui/react"
 import { DataTable } from "../components/DataTable";
-import { GenericEditForm, type FormField } from "../components/GenericEditForm"; 
+import { GenericEditForm, type FormField } from "../components/GenericEditForm";
 import type { Column } from "../components/DataTable";
 import { LuSearch } from "react-icons/lu";
 
@@ -81,7 +81,12 @@ const Projects: React.FC = () => {
     useEffect(() => {
         const fetchProj = async () => {
             try {
-                const response = await supabaseApi.get("/projects?select=*&order=id.asc");
+                const response = await supabaseApi.get("/projects", {
+                    params: {
+                        select: '*',
+                        order: 'id.asc'
+                    }
+                });
                 console.log("STATUS:", response.status);
                 console.log("DATA:", response.data);
                 setData(response.data);

@@ -24,6 +24,7 @@ import ProfInfo from '@/components/Profile/ProfInfo';
 import ProfConvo from '@/components/Profile/ProfConvo';
 import ProfCard from '@/components/Profile/ProfCard';
 import type { ProfInfoProps } from '@/components/Profile/ProfInfo';
+import Teams from '@/pages/Teams';
 
 interface ProfNavProps {
     image: React.ReactNode;
@@ -188,6 +189,11 @@ const Profile1: React.FC = () => {
             {/* Profile Project Cards */}
             {activeTab === "Projects" && (
                 <ProfCard />
+            )}
+
+            {/* Teams Card */}
+            {activeTab === "Teams" && (
+                <Teams />
             )}
 
         </Box>

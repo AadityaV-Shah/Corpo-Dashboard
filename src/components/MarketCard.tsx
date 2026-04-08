@@ -33,8 +33,8 @@ const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, 
                 </Box>
 
                 <Stack w={"full"} align={"center"} gap={3}>
-                    <Text fontSize={"25px"}>{title}</Text>
-                    <Text fontSize={"16px"}>{detail}</Text>
+                    <Text fontSize={"26px"} fontWeight={"bold"}>{title}</Text>
+                    <Text fontSize={"16px"} fontWeight={"medium"}>{detail}</Text>
                 </Stack>
             </Card.Body>
         </Card.Root>

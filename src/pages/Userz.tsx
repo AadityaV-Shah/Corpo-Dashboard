@@ -103,9 +103,12 @@ const Userz: React.FC = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await supabaseApi.get("/profiles?select=*&order=id.asc");
-                console.log("STATUS:", response.status);
-                console.log("DATA:", response.data);
+                const response = await supabaseApi.get("/profiles", {
+                    params: {
+                        select: '*',
+                        order: 'id.asc'
+                    }
+                });
                 setData(response.data);
             } catch (error) {
                 console.error("Error fetching users:", error);
@@ -189,13 +192,13 @@ const Userz: React.FC = () => {
                     motionPreset="slide-in-bottom"
                 >
                     <Dialog.Trigger asChild>
-                        <CButton 
+                        <CButton
                             label="Edit"
                             variant="ghost"
                             size="md"
                             fullWidth={true}
                             loading={false}
-                            style={{width:'fill', color:'white'}}
+                            style={{ width: 'fill', color: 'white' }}
                         />
                     </Dialog.Trigger>
                     <Dialog.Backdrop />
@@ -236,7 +239,7 @@ const Userz: React.FC = () => {
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     _placeholder={{ color: "gray.500" }}
                                 />
-                            </InputGroup>                                                                                                                                                                                                       
+                            </InputGroup>
                         </Box>
                         <Box overflowX="auto" width="100%">
                             <DataTable
