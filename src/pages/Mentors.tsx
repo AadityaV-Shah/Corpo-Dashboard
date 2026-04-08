@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Text, Container, Card, Grid, Stack, Image } from "@chakra-ui/react";
+import { Box, Container, Grid} from "@chakra-ui/react";
 import { supabaseApi } from "@/api/supabase";
 import MentorCard from "@/components/MentorCard";
 
@@ -34,7 +34,7 @@ const Mentors = () => {
                     templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
                     gap={6}
                 >
-                    {mentors.map((mentors, index) => (
+                    {mentors.map((mentors) => (
                         <MentorCard
                             image={mentors.image}
                             name={mentors.name}

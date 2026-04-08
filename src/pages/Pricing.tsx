@@ -1,11 +1,16 @@
-import { Box, Text, Container, Card, Grid, Button, Flex, Stack } from "@chakra-ui/react";
+import React, { useState, useEffect } from 'react';
+import { Box, Text, Container, Card, Grid, Flex, Stack } from "@chakra-ui/react";
 import { Check } from "lucide-react";
 import { tiers } from "../data/pricing";
 import CButton from "@/components/Button";
+import DialogBox from '@/components/DialogBox';
 
 const Pricing = () => {
+
+    const [selectedTier, setSelectedTier] = useState<string | null>(null);
+
     return (
-        <Box minH={"100vh"} w={"100%"} bg={"rgb(225, 226, 239)"} pt={5} pb={{base:'20px'}}>
+        <Box minH={"100vh"} w={"100%"} bg={"rgb(225, 226, 239)"} pt={5} pb={{ base: '20px' }}>
             <Container maxW="container.xl">
                 <Grid templateColumns={{ sm: 'repeat(1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
                     {tiers.map((item, index) => (
@@ -13,7 +18,7 @@ const Pricing = () => {
                             <Card.Body
                                 display="flex"
                                 flexDirection="column"
-                                gap={index === 1 ? "15px" : "15px"} 
+                                gap={index === 1 ? "15px" : "15px"}
                                 bg={"#102271"}
                                 p={6}
                                 borderRadius="xl"
@@ -48,9 +53,10 @@ const Pricing = () => {
                                     {item.buttonText}
                                 </Button> */}
 
-                                <CButton 
-                                label={item.buttonText}
-                                variant={index === 1 ? "secondary" : "primary" }
+                                <CButton
+                                    label={item.buttonText}
+                                    variant={index === 1 ? "secondary" : "primary"}
+                                    onClick={() => setSelectedTier(item.title)}
                                 />
 
                                 {index === 1 && (
@@ -75,6 +81,32 @@ const Pricing = () => {
                     ))}
                 </Grid>
             </Container>
+
+            <DialogBox
+                open={selectedTier !== null}
+                onClose={() => setSelectedTier(null)}
+                title={selectedTier ?? ''}
+                text={`Are you sure you would like the ${selectedTier} plan?`}  // ✅ fixed template literal
+                button1={
+                    <CButton
+                        label='Cancel'
+                        variant='primary'
+                        fullWidth={true}
+                        onClick={() => setSelectedTier(null)}  // ✅ closes dialog
+                    />
+                }
+                button2={
+                    <CButton
+                        label='Save'
+                        variant='secondary'
+                        fullWidth={true}
+                        onClick={() => {
+                            // handle save logic here
+                            setSelectedTier(null);
+                        }}
+                    />
+                }
+            />
         </Box>
     );
 };

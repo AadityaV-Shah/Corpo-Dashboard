@@ -44,6 +44,10 @@ const Navbar = () => {
                 justify="space-between"
                 align="center"
             >
+
+
+                {/* ---------------- LG DashNav Menu ----------------- */}
+
                 <HStack>
                     <Text fontWeight="bold" fontSize="xs" letterSpacing="wider" color="gray" display={{ base: 'none', md: 'none', lg: 'block' }}>
                         PAGES /
@@ -95,8 +99,6 @@ const Navbar = () => {
                 </HStack>
 
 
-
-
                 {/* ---------------- SM DashNav Menu ----------------- */}
 
                 <Box
@@ -107,7 +109,7 @@ const Navbar = () => {
                 >
                     <MyPage />
 
-                    <HStack px={1} gap={2} align="center">  {/* ✅ removed w="100%" */}
+                    <HStack px={1} gap={2} align="center"> 
                         <Box
                             display="flex"
                             alignItems="center"

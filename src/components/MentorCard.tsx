@@ -29,29 +29,6 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
 
                 <Box w="full" h={"auto"} justifyItems={"center"} position={"relative"}>
                     <Image src={image} objectFit="contain" borderRadius="full" />
-
-                    {/* The Overlay - Now sits directly on top and listens for its own hover */}
-                    <Box
-                        position="absolute"
-                        top="0"
-                        left="-6"
-                        w={{ base: '300px', lg: '390px' }}
-                        h="auto"
-                        display="flex"
-                        alignItems="center"
-                        p="2"
-                        justifyContent="center"
-                        bg="rgba(0,0,0,0.7)" // Semi-transparent black
-                        color="white"
-                        borderRadius="xl"
-                        cursor="pointer"
-                        opacity="0"
-                        zIndex="10" // Force it to the front
-                        transition="opacity 0.2s ease-in-out"
-                        _hover={{ opacity: 1 }} // Direct hover trigger
-                    >
-                        {detail}
-                    </Box>
                 </Box>
 
                 <Stack w={"full"} align={"center"} gap={3}>
