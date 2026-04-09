@@ -16,12 +16,12 @@ export default function OptionsMenu() {
             <Menu.Trigger asChild>
                 <IconButton
                     aria-label="Options"
-                    variant="outline"
+                    focusRing='none'
+                    variant="ghost"
                     color="black"
                     rounded={'2xl'}
                     bg="transparent"
                     _hover={{
-                        borderColor: "white",
                         bg: "whiteAlpha.100",
                         focusRing: 'none',
                     }}
@@ -46,7 +46,7 @@ export default function OptionsMenu() {
                             <Text>Profile</Text>
                         </Menu.Item>    
                     </Link>
-
+                                                                                                                            
                     <Menu.Item value="account" _hover={{ bg: "#181e29" }}>
                         My account
                     </Menu.Item>

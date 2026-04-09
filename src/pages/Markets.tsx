@@ -33,7 +33,8 @@ const Markets = () => {
                             iconic={item.icon}
                             title={item.name}
                             detail={item.desc}
-                            bgimage={"url('/designMentor2.webp')"}
+                            textcolor={"#000000"}
+                            bgimage={"url('/designMentor1.jpg')"}
                             boxsize={"50px"}
                         />
                     )

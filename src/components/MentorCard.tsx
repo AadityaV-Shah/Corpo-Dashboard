@@ -21,7 +21,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
             <Card.Body display="flex"
                 flexDirection="column"
                 gap={"5"} // Using pixel values to see a clear difference
-                bgImage="linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/designMentor.jpg')"
+                bgImage="linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/designMentor2.webp')"
                 bgSize="cover"
                 borderRadius="xl"
                 position={"relative"}
@@ -32,10 +32,10 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
                 </Box>
 
                 <Stack w={"full"} align={"center"} gap={3}>
-                    <Text fontSize={"22px"}>{name}</Text>
-                    <Text fontSize={"16px"}>{role}</Text>
-                    <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"} cursor={"pointer"}>{work}</Text>
-                    <Text fontSize={"15px"}>{depart}</Text>
+                    <Text fontSize={"22px"} fontWeight={"bold"}>{name}</Text>
+                    <Text fontSize={"16px"} fontWeight={"medium"}>{role}</Text>
+                    <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"} cursor={"pointer"} fontWeight={"medium"}>{work}</Text>
+                    <Text fontSize={"15px"} fontWeight={"medium"}>{depart}</Text>
                 </Stack>
 
                 <Dialog.Root

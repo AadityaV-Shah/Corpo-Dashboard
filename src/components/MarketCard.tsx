@@ -7,9 +7,10 @@ interface MarketCardProps {
     detail?: string;
     bgimage?: string;
     boxsize?: string;
+    textcolor?: string;
 }
 
-const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, bgimage, boxsize }) => {
+const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, bgimage, boxsize, textcolor }) => {
     return (
         <Card.Root borderRadius="xl">
             <Card.Body display="flex"
@@ -29,12 +30,12 @@ const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, 
                     alignItems="center"
                     position="relative"
                 >
-                    <Icon boxSize={boxsize}>{Iconic && <Iconic />}</Icon>
+                    <Icon boxSize={boxsize} color={textcolor}>{Iconic && <Iconic />}</Icon>
                 </Box>
 
                 <Stack w={"full"} align={"center"} gap={3}>
-                    <Text fontSize={"26px"} fontWeight={"bold"}>{title}</Text>
-                    <Text fontSize={"16px"} fontWeight={"medium"}>{detail}</Text>
+                    <Text fontSize={"26px"} fontWeight={"bold"} color={textcolor}>{title}</Text>
+                    <Text fontSize={"16px"} fontWeight={"medium"} color={textcolor}>{detail}</Text>
                 </Stack>
             </Card.Body>
         </Card.Root>
