@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import { tiers } from "../data/pricing";
 import CButton from "@/components/Button";
 import DialogBox from '@/components/DialogBox';
+import { toaster, Toaster as UIToaster } from '@/components/ui/toaster';
 
 const Pricing = () => {
 
@@ -92,7 +93,7 @@ const Pricing = () => {
                         label='Cancel'
                         variant='primary'
                         fullWidth={true}
-                        onClick={() => setSelectedTier(null)}  // ✅ closes dialog
+                        onClick={() => setSelectedTier(null)}  
                     />
                 }
                 button2={
@@ -101,12 +102,19 @@ const Pricing = () => {
                         variant='secondary'
                         fullWidth={true}
                         onClick={() => {
-                            // handle save logic here
+                            toaster.create({
+                                title: "Success",
+                                description: "Plan updated successfully",
+                                type: 'success'
+                            });
                             setSelectedTier(null);
                         }}
                     />
                 }
             />
+
+            <UIToaster />
+
         </Box>
     );
 };
