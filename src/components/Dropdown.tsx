@@ -2,6 +2,8 @@ import {
     Button, Menu, Portal,
 } from "@chakra-ui/react";
 import { ChevronDown } from "lucide-react";
+import { type ButtonProps } from "@chakra-ui/react";
+import CButton from "./Button";
 
 // --- Reusable dropdown for role/department fields ---
 export const FieldMenu = ({
@@ -16,10 +18,13 @@ export const FieldMenu = ({
     options: string[];
 }) => (
     <Menu.Root onSelect={(details) => onChange(details.value)}>
-        <Menu.Trigger asChild>
-            <Button variant="surface" size="sm">
-                {value || placeholder} <ChevronDown />
-            </Button>
+        <Menu.Trigger focusRing={"none"}>
+            <CButton
+                label={value || placeholder}
+                variant="primary"
+                rightIcon={<ChevronDown />}
+                size="sm"
+            />
         </Menu.Trigger>
         <Portal>
             <Menu.Positioner>
