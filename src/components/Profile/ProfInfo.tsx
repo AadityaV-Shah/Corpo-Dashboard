@@ -26,7 +26,7 @@ const EditProfForm = ({
     onSave: (data: ProfInfoProps) => void;
     onClose: () => void;
 }) => {
-    const { register, setValue, handleSubmit, formState: { errors } } = useForm<ProfInfoProps>({
+    const { register, handleSubmit, formState: { errors } } = useForm<ProfInfoProps>({
         defaultValues: profile,
     });
 

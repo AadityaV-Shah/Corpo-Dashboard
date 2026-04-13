@@ -9,6 +9,7 @@ import { toaster, Toaster as UIToaster } from '@/components/ui/toaster';
 const Pricing = () => {
 
     const [selectedTier, setSelectedTier] = useState<string | null>(null);
+    const [currentPlan, setCurrentPlan] = useState<string | null>(null); 
 
     return (
         <Box minH={"100vh"} w={"100%"} bg={"rgb(225, 226, 239)"} pt={5} pb={{ base: '20px' }}>
@@ -25,7 +26,7 @@ const Pricing = () => {
                                 borderRadius="xl"
                                 position={"relative"}
                                 fontFamily={"poppins"}
-                            >       
+                            >
                                 <Stack gap={3}>
                                     <Card.Title color="white" fontSize="xl">{item.title}</Card.Title>
                                     <Card.Description display={"flex"} alignItems={"baseline"} gap={1} color={"whiteAlpha.800"}>
@@ -78,11 +79,11 @@ const Pricing = () => {
                                     </Box>
                                 )}
 
-                                {index === 0 && (
+                                {item.title === currentPlan && (
                                     <Box
                                         position="absolute"
                                         top="-10px"
-                                        left="60%"
+                                        left="10%"
                                         bg="teal"
                                         px={4}
                                         py={1}
@@ -92,7 +93,7 @@ const Pricing = () => {
                                         color="white"
                                         boxShadow="lg"
                                     >
-                                        Hot !!!
+                                        Current
                                     </Box>
                                 )}
 
@@ -101,7 +102,6 @@ const Pricing = () => {
                     ))}
                 </Grid>
             </Container>
-
             <DialogBox
                 open={selectedTier !== null}
                 onClose={() => setSelectedTier(null)}
@@ -112,7 +112,7 @@ const Pricing = () => {
                         label='Cancel'
                         variant='primary'
                         fullWidth={true}
-                        onClick={() => setSelectedTier(null)}  
+                        onClick={() => setSelectedTier(null)}
                     />
                 }
                 button2={
@@ -121,6 +121,7 @@ const Pricing = () => {
                         variant='secondary'
                         fullWidth={true}
                         onClick={() => {
+                            setCurrentPlan(selectedTier);
                             toaster.create({
                                 title: "Success",
                                 description: "Plan updated successfully",

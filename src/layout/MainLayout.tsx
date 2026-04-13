@@ -19,7 +19,7 @@ const MainLayout = () => {
 
     return (
 
-        <Box w="100vw" minW={"sm"} h="100vh" display="flex">
+        <Box w="100vw" minW={"base"} h="100vh" display="flex">
 
             {/* Sidebar */}
             <Box w="250px" bg="gray.900" color="white" display={{base:'none', md:'none', lg:'block'}}>
