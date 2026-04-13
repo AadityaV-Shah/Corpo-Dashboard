@@ -28,7 +28,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
                 fontFamily={"poppins"}>
 
                 <Box w="full" h={"auto"} justifyItems={"center"} position={"relative"}>
-                    <Image src={image} objectFit="contain" borderRadius="full" />
+                    <Image src={image} objectFit="contain" borderRadius="full"/>
                 </Box>
 
                 <Stack w={"full"} align={"center"} gap={3}>
@@ -42,7 +42,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
                     open={dialogOpen}
                     onOpenChange={(details) => setDialogOpen(details.open)}
                     placement="top"
-                    motionPreset="slide-in-bottom"
+                    motionPreset="scale"
                 >
 
                     <CButton

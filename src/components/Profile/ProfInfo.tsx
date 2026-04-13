@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import {
     Box, Text, Stack, Button, Dialog, HStack, Input, Grid,
-    Textarea
+    Textarea, InputGroup, InputElement
 } from "@chakra-ui/react";
 import { supabase } from '@/api/supabaseAdmin';
 import { supabaseApi } from '@/api/supabase';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 export interface ProfInfoProps {
+    pfp?: string;
     name: string;
     phone: string;
     location: string;
@@ -25,7 +26,7 @@ const EditProfForm = ({
     onSave: (data: ProfInfoProps) => void;
     onClose: () => void;
 }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<ProfInfoProps>({
+    const { register, setValue, handleSubmit, formState: { errors } } = useForm<ProfInfoProps>({
         defaultValues: profile,
     });
 
@@ -37,6 +38,15 @@ const EditProfForm = ({
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Stack gap={4}>
+
+                <Grid templateColumns="110px 1fr" alignItems="start" gap={4}>
+                    <Text fontWeight="semibold" textAlign="right" mt={2}>PFP (link)</Text>
+                    <Stack gap={1}>
+                        <Input {...register("pfp", { required: "PFP is required" })} variant="subtle" />
+                        {errors.pfp && <Text color="red.400" fontSize="xs">{errors.pfp.message}</Text>}
+                    </Stack>
+                </Grid>
+
                 <Grid templateColumns="110px 1fr" alignItems="start" gap={4}>
                     <Text fontWeight="semibold" textAlign="right" mt={2}>Name</Text>
                     <Stack gap={1}>
@@ -98,7 +108,7 @@ const EditProfForm = ({
 const ProfInfo: React.FC = () => {
     const [userEmail, setUserEmail] = useState("");
     const [userId, setUserId] = useState<string | null>(null);
-    const [profile, setProfile] = useState<ProfInfoProps>({ name: "", phone: "", location: "", about: "" });
+    const [profile, setProfile] = useState<ProfInfoProps>({ pfp: "", name: "", phone: "", location: "", about: "" });
     const [dialogOpen, setDialogOpen] = useState(false);
 
     useEffect(() => {
@@ -111,8 +121,8 @@ const ProfInfo: React.FC = () => {
 
             const response = await supabaseApi.get(`/admin_profiles?id=eq.${session.user.id}`);
             if (response.data.length > 0) {
-                const { name, phone, location, about } = response.data[0];
-                setProfile({ name, phone, location, about });
+                const { pfp, name, phone, location, about } = response.data[0];
+                setProfile({ pfp, name, phone, location, about });
             }
         };
         getUser();

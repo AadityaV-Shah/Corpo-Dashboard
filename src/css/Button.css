@@ -48,15 +48,15 @@
 
 /* ── Variants ── */
 .btn-primary {
-    background: #c8f04d;
-    color: #0e0e0f;
-    border-color: #c8f04d;
+    background: teal;
+    color: white;
+    border-color: teal;
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: #d9ff5c;
-    border-color: #d9ff5c;
-    box-shadow: 0 0 18px rgba(200, 240, 77, 0.35);
+    background: teal;
+    border-color: teal;
+    box-shadow: 0 0 18px rgba(0, 167, 167, 0.35);
 }
 
 .btn-secondary {

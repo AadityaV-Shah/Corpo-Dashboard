@@ -20,7 +20,7 @@ import { Menu as MenuIcon } from "lucide-react";
 import { Box as Blox, Wrench } from "lucide-react";
 import { HandFist } from "lucide-react";
 import PlatSettings from '@/components/Profile/PlatSettings';
-import ProfInfo from '@/components/Profile/ProfInfo';           
+import ProfInfo from '@/components/Profile/ProfInfo';
 import ProfConvo from '@/components/Profile/ProfConvo';
 import ProfCard from '@/components/Profile/ProfCard';
 import type { ProfInfoProps } from '@/components/Profile/ProfInfo';
@@ -50,7 +50,7 @@ const Profile1: React.FC = () => {
 
     const [activeTab, setActiveTab] = useState("Overview")
     const [userEmail, setUserEmail] = useState("");
-    const [profile, setProfile] = useState<ProfInfoProps>({ name: "", phone: "", location: "", about: "" });
+    const [profile, setProfile] = useState<ProfInfoProps>({ pfp: "", name: "", phone: "", location: "", about: "" });
 
     useEffect(() => {
         const getUser = async () => {
@@ -61,8 +61,8 @@ const Profile1: React.FC = () => {
 
             const response = await supabaseApi.get(`/admin_profiles?id=eq.${session.user.id}`);
             if (response.data.length > 0) {
-                const { name, phone, location, about } = response.data[0];
-                setProfile({ name, phone, location, about });
+                const { pfp, name, phone, location, about } = response.data[0];
+                setProfile({ pfp, name, phone, location, about });
             }
         };
         getUser();
@@ -95,7 +95,7 @@ const Profile1: React.FC = () => {
 
                     /* CENTERING LOGIC */
                     top={50}
-                    left="50%"  
+                    left="50%"
                     transform="translateX(-50%)"
 
                     p={4}
@@ -108,7 +108,7 @@ const Profile1: React.FC = () => {
                 >
 
                     <Box display={"flex"} justifyContent={"space-between"} alignContent={"center"} gap={4}>
-                        <Image src="/goat.webp" boxSize="70px" borderRadius="xl" display={{ base: 'block', md: 'block', lg:'block' }} />
+                        <Image src={profile.pfp} boxSize="70px" borderRadius="xl" display={{ base: 'block', md: 'block', lg: 'block' }} />
                         <Stack gap={0} alignContent={"center"} mt={2}>
                             <Text color={"black"} fontWeight={"medium"} fontSize={"20px"}>{profile.name || '-'}</Text>
                             <Text color={"grey"} fontSize={"15px"}>{userEmail}</Text>

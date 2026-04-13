@@ -7,6 +7,7 @@ import { supabase } from "@/api/supabaseAdmin";
 import { supabaseApi } from "@/api/supabase";
 import { User } from "lucide-react";
 import MyPage from "@/pages/SMleftsection"
+import CBadge from "../Badge";
 
 
 const Navbar = () => {
@@ -36,7 +37,7 @@ const Navbar = () => {
             <Flex
                 bg="rgb(225, 226, 239)" // Glassmorphism white with 70% opacity
                 backdropFilter="blur(10px)" // The blur effect
-                px={{base:'3', md:'6', lg:'6'}}
+                px={{ base: '3', md: '6', lg: '6' }}
                 py="4"
                 borderWidth="1px"
                 borderColor="white/20"
@@ -61,10 +62,15 @@ const Navbar = () => {
                 <HStack gap="8" display={{ base: "none", md: "none", lg: 'flex' }}>
 
                     <HStack gap="6" color="gray.600" display={{ base: 'none', md: 'none', lg: 'flex' }}>
-                        <FaFacebook color="gray.500" size={20} cursor={"pointer"} />
-                        <a href="https://github.com/AadityaV-Shah" target="blank"><FaGithub color="gray.500" size={20} cursor={"pointer"} /></a>
-                        <a href="https://www.linkedin.com/in/aaditya-vikram-shah-b9b06a3b6/" target="blank"><FaLinkedin color="gray.500" size={20} cursor={"pointer"} /></a>
-                        <FaBell color="gray.500" size={20} cursor={"pointer"} />
+                        <Box position={'relative'} cursor={"pointer"}>
+                            <FaBell color="gray.500" size={25} />
+                            <CBadge
+                                notif="3"
+                                position="absolute"
+                                top="-6px"
+                                left="15px"
+                            />
+                        </Box>
                     </HStack>
 
                     <HStack
@@ -108,10 +114,10 @@ const Navbar = () => {
                     w="full"
                 >
                     <Box pr={"30px"}>
-                    <MyPage />
+                        <MyPage />
                     </Box>
 
-                    <HStack px={0} gap={2} align="center"> 
+                    <HStack px={0} gap={2} align="center">
                         <Box
                             display="flex"
                             alignItems="center"
@@ -130,7 +136,7 @@ const Navbar = () => {
                                 </Text>
                             </Box>
                             <OptionsMenu />
-                        </HStack>
+                        </HStack>   
                     </HStack>
                 </Box>
 

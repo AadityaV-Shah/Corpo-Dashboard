@@ -25,7 +25,7 @@ const Pricing = () => {
                                 borderRadius="xl"
                                 position={"relative"}
                                 fontFamily={"poppins"}
-                            >
+                            >       
                                 <Stack gap={3}>
                                     <Card.Title color="white" fontSize="xl">{item.title}</Card.Title>
                                     <Card.Description display={"flex"} alignItems={"baseline"} gap={1} color={"whiteAlpha.800"}>
@@ -77,6 +77,25 @@ const Pricing = () => {
                                         MOST POPULAR
                                     </Box>
                                 )}
+
+                                {index === 0 && (
+                                    <Box
+                                        position="absolute"
+                                        top="-10px"
+                                        left="60%"
+                                        bg="teal"
+                                        px={4}
+                                        py={1}
+                                        borderRadius="full"
+                                        fontSize="xs"
+                                        fontWeight="bold"
+                                        color="white"
+                                        boxShadow="lg"
+                                    >
+                                        Hot !!!
+                                    </Box>
+                                )}
+
                             </Card.Body>
                         </Card.Root>
                     ))}
