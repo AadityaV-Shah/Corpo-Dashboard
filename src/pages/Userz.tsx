@@ -207,7 +207,7 @@ const Userz: React.FC = () => {
                         </Dialog.Content>
                     </Dialog.Positioner>
                 </Dialog.Root>
-            ),
+            ),  
         },
     ];
 
