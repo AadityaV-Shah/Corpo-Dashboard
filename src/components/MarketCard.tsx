@@ -1,5 +1,5 @@
 import type { FC, SVGProps } from 'react'
-import { Box, Text, Container, Card, Grid, Stack, Icon } from "@chakra-ui/react";
+import { Box, Text, Card, Stack, Icon } from "@chakra-ui/react";
 
 interface MarketCardProps {
     iconic?: FC<SVGProps<SVGSVGElement>>;
@@ -34,8 +34,8 @@ const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, 
                 </Box>
 
                 <Stack w={"full"} align={"center"} gap={3}>
-                    <Text fontSize={"26px"} fontWeight={"bold"} color={textcolor}>{title}</Text>
-                    <Text fontSize={"16px"} fontWeight={"medium"} color={textcolor}>{detail}</Text>
+                    <Text fontSize={"2xl"} fontWeight={"bold"} color={textcolor}>{title}</Text>
+                    <Text fontSize={"base"} fontWeight={"medium"} color={textcolor}>{detail}</Text>
                 </Stack>
             </Card.Body>
         </Card.Root>
