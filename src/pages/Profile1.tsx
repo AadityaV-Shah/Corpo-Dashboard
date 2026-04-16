@@ -166,7 +166,6 @@ const Profile1: React.FC = () => {
                 </Box>
             </Box>
 
-
             {/* Profile components */}
             {activeTab === "Overview" && (
                 <Container mt={"80px"}>
