@@ -31,7 +31,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
                     <Image src={image} objectFit="contain" borderRadius="full"/>
                 </Box>
 
-                <Stack w={"full"} align={"center"} gap={3}>
+                <Stack w={"full"} align={"center"} justify={"center"} gap={3}>
                     <Text fontSize={"22px"} fontWeight={"bold"}>{name}</Text>
                     <Text fontSize={"16px"} fontWeight={"medium"}>{role}</Text>
                     <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"} cursor={"pointer"} fontWeight={"medium"}>{work}</Text>
