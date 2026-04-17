@@ -35,7 +35,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
                     <Text fontSize={"22px"} fontWeight={"bold"}>{name}</Text>
                     <Text fontSize={"16px"} fontWeight={"medium"}>{role}</Text>
                     <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"} cursor={"pointer"} fontWeight={"medium"}>{work}</Text>
-                    <Text fontSize={"15px"} fontWeight={"medium"}>{depart}</Text>
+                    <Text fontSize={"15px"} fontWeight={"medium"} alignItems={"center"}>{depart}</Text>
                 </Stack>
 
                 <Dialog.Root
