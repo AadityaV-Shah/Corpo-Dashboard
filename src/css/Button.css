@@ -47,10 +47,30 @@
 }
 
 /* ── Variants ── */
+
+.btn-dark {
+    background: #000;
+    color: white;
+    border-color: #000;
+}
+
+.btn-dark:hover:not(:disabled) {
+    background: #fff;
+    color: #000;
+    border-color: #000;
+    box-shadow: 0 0 5px rgb(221, 156, 35);
+}
+
 .btn-primary {
     background: teal;
     color: white;
     border-color: teal;
+}
+
+.btn-dark:hover:not(:disabled) {
+    background: rgb(255, 177, 32);
+    border-color: rgb(255, 177, 32);
+    box-shadow: 0 0 5px rgb(221, 156, 35);
 }
 
 .btn-primary:hover:not(:disabled) {

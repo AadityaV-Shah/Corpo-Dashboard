@@ -4,7 +4,7 @@ import "../css/Button.css";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     label?: string;
-    variant?: "primary" | "secondary" | "ghost" | "danger";
+    variant?: "primary" | "secondary" | "ghost" | "danger" | "dark";
     size?: "sm" | "md" | "lg";
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
