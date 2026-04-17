@@ -26,7 +26,9 @@ const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, 
                 bgSize="cover"
                 borderRadius="xl"
                 position={"relative"}
-                fontFamily={"poppins"}>
+                fontFamily={"poppins"}
+                py={5}
+            >
 
                 <Box
                     w="full"

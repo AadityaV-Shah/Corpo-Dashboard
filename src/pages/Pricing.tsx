@@ -106,7 +106,7 @@ const Pricing = () => {
                 open={selectedTier !== null}
                 onClose={() => setSelectedTier(null)}
                 title={selectedTier ?? ''}
-                text={`Are you sure you would like the ${selectedTier} plan?`}  // ✅ fixed template literal
+                text={`Are you sure you would like the ${selectedTier} plan?`}  
                 button1={
                     <CButton
                         label='Cancel'
