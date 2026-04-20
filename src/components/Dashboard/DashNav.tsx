@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Flex, HStack, Text } from "@chakra-ui/react";
+import { Box, Flex, HStack, Text, Image } from "@chakra-ui/react";
 import { FaBell, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import OptionsMenu from "../OptionsMenu";
 import type { ProfInfoProps } from "../Profile/ProfInfo";
@@ -12,7 +12,7 @@ import CBadge from "../Badge";
 
 const Navbar = () => {
 
-    const [profile, setProfile] = useState<ProfInfoProps>({ name: "", phone: "", location: "", about: "" });
+    const [profile, setProfile] = useState<ProfInfoProps>({ name: "", phone: "", location: "", about: "", pfp: "" });
 
     useEffect(() => {
         const getUser = async () => {
@@ -20,8 +20,8 @@ const Navbar = () => {
             if (!session) return;
             const response = await supabaseApi.get(`/admin_profiles?id=eq.${session.user.id}`);
             if (response.data.length > 0) {
-                const { name, phone, location, about } = response.data[0];
-                setProfile({ name, phone, location, about });
+                const { name, phone, location, about, pfp } = response.data[0];
+                setProfile({ name, phone, location, about, pfp });
             }
         };
         getUser();
@@ -80,19 +80,21 @@ const Navbar = () => {
                         align="center"
                         display={{ base: 'none', md: 'none', lg: 'flex' }}
                     >
-                        <Box w={"25px"} h={"25px"} display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            bg="gray.700"
-                            borderRadius="full"
-                            boxSize={8}
-                        >
-                            <User />
+                        <Box w="full" h="auto" justifyItems="center" position="relative">
+                            <Image
+                                src={profile.pfp}
+                                borderRadius="full"
+                                w="10"
+                                h="10"
+                                objectFit="cover"
+                            />
                         </Box>
 
                         <HStack alignItems="center"
                             justifyContent="center"
-                            gap={2}>
+                            gap={2}
+                            flexShrink={0}
+                            >
                             <Box mr="auto">
                                 <Text fontSize="sm" fontWeight="500" lineHeight="16px" color="black">
                                     {profile.name || '-'}
@@ -118,15 +120,14 @@ const Navbar = () => {
                     </Box>
 
                     <HStack px={0} gap={2} align="center">
-                        <Box
-                            display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            bg="gray.700"
-                            borderRadius="full"
-                            boxSize={8}
-                        >
-                            <User />
+                        <Box w="full" h="auto" justifyItems="center" position="relative">
+                            <Image
+                                src={profile.pfp}
+                                borderRadius="full"
+                                w="32"
+                                h="32"
+                                objectFit="cover"
+                            />
                         </Box>
 
                         <HStack alignItems="center" justifyContent="center" gap={2}>
@@ -136,7 +137,7 @@ const Navbar = () => {
                                 </Text>
                             </Box>
                             <OptionsMenu />
-                        </HStack>   
+                        </HStack>
                     </HStack>
                 </Box>
 
