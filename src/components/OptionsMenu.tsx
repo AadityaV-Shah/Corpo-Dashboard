@@ -44,12 +44,14 @@ export default function OptionsMenu() {
                     <Link to="/profile1">
                         <Menu.Item value="profile" _hover={{ bg: "#181e29" }}>
                             <Text>Profile</Text>
-                        </Menu.Item>    
+                        </Menu.Item>
                     </Link>
-                                                                                                                            
-                    <Menu.Item value="account" _hover={{ bg: "#181e29" }}>
-                        My account
-                    </Menu.Item>
+
+                    <Link to="/accounts">
+                        <Menu.Item value="account" _hover={{ bg: "#181e29" }}>
+                            Accounts
+                        </Menu.Item>
+                    </Link>
 
                     <Menu.Separator />
 
@@ -77,7 +79,7 @@ export default function OptionsMenu() {
                                 alignItems: "center",
                                 width: "100%",
                                 padding: "0.5rem 0.75rem" // Match your menu's standard padding
-                            }}  
+                            }}
                         >
                             <Text>Logout</Text>
                             <Icon as={MdLogout} boxSize={4} ml={4} />
@@ -87,6 +89,6 @@ export default function OptionsMenu() {
                 </Menu.Content>
             </Menu.Positioner>
 
-        </Menu.Root>
+        </Menu.Root >
     );
 }

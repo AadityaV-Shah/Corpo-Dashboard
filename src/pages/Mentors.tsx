@@ -12,7 +12,7 @@ interface MentorProps {
     detail: string;
 }
 
-const Mentors = () => {
+const Mentors = () => { 
 
     const [mentors, setMentors] = useState<MentorProps[]>([]);
 
@@ -42,6 +42,9 @@ const Mentors = () => {
                             work={mentors.wplace}
                             depart={mentors.skill}
                             detail={mentors.detail}
+                            blabel="Details"
+                            showDetails={true}
+                            showWork={true}
                         />
                     ))}
                 </Grid>

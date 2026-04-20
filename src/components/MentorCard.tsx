@@ -10,9 +10,12 @@ interface MentorCardProps {
     depart?: string;
     bgimage?: string;
     detail?: string;
+    showDetails?: boolean;
+    showWork?: boolean;
+    blabel?: string;
 }
 
-const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart, bgimage, detail }) => {
+const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart, bgimage, detail, blabel, showDetails = true, showWork = true }) => {
 
     const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -27,14 +30,24 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
                 position={"relative"}
                 fontFamily={"poppins"}>
 
-                <Box w="full" h={"auto"} justifyItems={"center"} position={"relative"}>
-                    <Image src={image} objectFit="contain" borderRadius="full"/>
+                <Box w="full" h="auto" justifyItems="center" position="relative">
+                    <Image
+                        src={image}
+                        borderRadius="full"
+                        w="32"
+                        h="32"
+                        objectFit="cover"
+                    />
                 </Box>
 
                 <Stack w={"full"} align={"center"} justify={"center"} gap={3}>
                     <Text fontSize={"22px"} fontWeight={"bold"}>{name}</Text>
                     <Text fontSize={"16px"} fontWeight={"medium"}>{role}</Text>
-                    <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"} cursor={"pointer"} fontWeight={"medium"}>{work}</Text>
+
+                    {showWork && (
+                        <Text fontSize={"16px"} bg={"red.400"} p={2} rounded={"xl"} cursor={"pointer"} fontWeight={"medium"}>{work}</Text>
+                    )}
+
                     <Text fontSize={"15px"} fontWeight={"medium"} alignItems={"center"}>{depart}</Text>
                 </Stack>
 
@@ -45,11 +58,13 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
                     motionPreset="scale"
                 >
 
-                    <CButton
-                        label='Details'
-                        variant={"secondary"}
-                        onClick={() => setDialogOpen(true)}
-                    />
+                    {showDetails && (
+                        <CButton
+                            label={blabel}
+                            variant={"secondary"}
+                            onClick={() => setDialogOpen(true)}
+                        />
+                    )}
 
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
