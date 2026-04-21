@@ -124,13 +124,18 @@ const Navbar = () => {
                             <Image
                                 src={profile.pfp}
                                 borderRadius="full"
-                                w="32"
-                                h="32"
+                                w="10"
+                                h="10"
                                 objectFit="cover"
                             />
                         </Box>
 
-                        <HStack alignItems="center" justifyContent="center" gap={2}>
+                        <HStack 
+                        alignItems="center" 
+                        justifyContent="center" 
+                        gap={2}
+                        flexShrink={0}
+                        >
                             <Box mr="auto">
                                 <Text fontSize="sm" fontWeight="500" lineHeight="16px" color="black">
                                     {profile.name || '-'}

@@ -61,7 +61,11 @@ const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, 
 
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
-                        <Dialog.Content bg="gray.800" color="white">
+                        <Dialog.Content 
+                        bg="gray.800" 
+                        color="white"
+                        bgImage="url('/designMentor2.webp')"
+                        >
                             <Dialog.Header>
                                 <Dialog.Title fontSize="xl">Details for {title}</Dialog.Title>
                             </Dialog.Header>

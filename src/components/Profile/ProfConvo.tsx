@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
     Stack,
     Text,
-    HStack,
     Image,
     Box,
     Button
@@ -20,25 +19,25 @@ interface ConvoProps {
 const ConvoData: ConvoProps[] = [
     {
         id: 1,
-        image: "https://randomuser.me/api/portraits/women/1.jpg",
+        image: "https://randomuser.me/api/portraits/women/3.jpg",
         name: "Esthera Jackson",
         convo: "Hey hows it going?"
     },
     {
         id: 2,
-        image: "https://randomuser.me/api/portraits/women/2.jpg",
+        image: "https://randomuser.me/api/portraits/women/15.jpg",
         name: "Alexa Liras",
         convo: "Give me money bro"
     },
     {
         id: 3,
-        image: "https://randomuser.me/api/portraits/men/3.jpg",
+        image: "https://randomuser.me/api/portraits/men/7.jpg",
         name: "Laurent Michael",
         convo: "Is the project done?"
     },
     {
         id: 4,
-        image: "https://randomuser.me/api/portraits/men/4.jpg",
+        image: "https://randomuser.me/api/portraits/men/12.jpg",
         name: "Freduardo Hill",
         convo: "Where you at bro?"
     }

@@ -2,7 +2,6 @@ import {
     Button, Menu, Portal,
 } from "@chakra-ui/react";
 import { ChevronDown } from "lucide-react";
-import { type ButtonProps } from "@chakra-ui/react";
 import CButton from "./Button";
 
 // --- Reusable dropdown for role/department fields ---
