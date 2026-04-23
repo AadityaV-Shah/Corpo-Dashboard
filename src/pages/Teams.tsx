@@ -45,6 +45,7 @@ const Teams = () => {
                         detail={item.team}
                         bgimage={"url('/designMentor2.webp')"}
                         boxsize={"40px"}
+                        showButton={false}
                     />
                 ))}
             </Grid>

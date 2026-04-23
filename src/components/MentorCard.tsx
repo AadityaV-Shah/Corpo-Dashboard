@@ -68,7 +68,11 @@ const MentorCard: React.FC<MentorCardProps> = ({ image, name, role, work, depart
 
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
-                        <Dialog.Content bg="gray.800" color="white">
+                        <Dialog.Content 
+                        bg="gray.800" 
+                        color="white"
+                        bgImage="url('/designMentor2.webp')"
+                        >
                             <Dialog.Header>
                                 <Dialog.Title fontSize="xl">Details for {name}</Dialog.Title>
                             </Dialog.Header>

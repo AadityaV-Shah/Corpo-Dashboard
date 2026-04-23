@@ -11,9 +11,10 @@ interface MarketCardProps {
     boxsize?: string;
     textcolor?: string;
     xdetail?: string;
+    showButton?: boolean;
 }
 
-const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, bgimage, boxsize, textcolor, xdetail }) => {
+const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, bgimage, boxsize, textcolor, xdetail, showButton = true }) => {
 
     const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -53,15 +54,21 @@ const MarketCard: React.FC<MarketCardProps> = ({ iconic: Iconic, title, detail, 
                     motionPreset="scale"
                 >
 
-                    <CButton
-                        label='Details'
-                        variant={"dark"}
-                        onClick={() => setDialogOpen(true)}
-                    />
+                    {showButton && (
+                        <CButton
+                            label='Details'
+                            variant={"dark"}
+                            onClick={() => setDialogOpen(true)}
+                        />
+                    )}
 
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
-                        <Dialog.Content bg="gray.800" color="white">
+                        <Dialog.Content 
+                        bg="gray.800" 
+                        color="white"
+                        bgImage="url('/designMentor2.webp')"
+                        >
                             <Dialog.Header>
                                 <Dialog.Title fontSize="xl">Details for {title}</Dialog.Title>
                             </Dialog.Header>

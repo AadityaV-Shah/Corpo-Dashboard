@@ -39,6 +39,7 @@ const Markets = () => {
                             bgimage={"url('/designMentor1.jpg')"}
                             boxsize={"50px"}
                             xdetail={item.xdetail}
+                            showButton={true}
                         />
                     )
                     )}

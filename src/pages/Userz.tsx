@@ -8,7 +8,6 @@ import { LuSearch } from "react-icons/lu";
 import { DataTable } from "../components/DataTable";
 import type { Column } from "../components/DataTable";
 import { GenericEditForm, type FormField } from "../components/GenericEditForm";
-import CButton from "@/components/Button";
 
 // --- Interface ---
 interface UserProps {

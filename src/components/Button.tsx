@@ -25,8 +25,9 @@ export default function CButton({
     loading = false,
     disabled,
     onClick,
+    type = "button",
     ...rest
-}: ButtonProps) {       
+}: ButtonProps) {
     const classes = [
         "btn",
         `btn-${variant}`,
@@ -38,6 +39,7 @@ export default function CButton({
 
     return (
         <button
+            type={type}
             className={classes}
             disabled={disabled || loading}
             onClick={onClick}

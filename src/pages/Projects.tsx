@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { supabaseApi } from "@/api/supabase";
-import { Box, Text, Container, Image, Button, Badge, Dialog, HStack, Input, InputGroup } from "@chakra-ui/react";
+import { Box, Text, Container, Image, Button, Badge, Dialog, HStack, Input } from "@chakra-ui/react";
 import { Progress } from "@chakra-ui/react"
 import { DataTable } from "../components/DataTable";
 import { GenericEditForm, type FormField } from "../components/GenericEditForm";
 import type { Column } from "../components/DataTable";
 import { LuSearch } from "react-icons/lu";
+import { InputGroup } from "@/components/ui/input-group"
 
 interface ProjProps {
     id: number;
