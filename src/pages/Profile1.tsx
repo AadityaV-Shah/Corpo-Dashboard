@@ -92,6 +92,7 @@ const Profile1: React.FC = () => {
                     /* RESPONSIVE WIDTH LOGIC */
                     w={{ base: "90%", md: "95%", lg: "1188px" }}
                     maxW="1188px"
+                    transition="width 0.3s ease"
 
                     /* CENTERING LOGIC */
                     top={50}
@@ -122,8 +123,8 @@ const Profile1: React.FC = () => {
                             <>
                                 <Text
                                     key={item.name}
-                                    onClick={() => setActiveTab(item.name)} // 3. Update state on click
-                                    color={activeTab === item.name ? "white" : "black"} // 4. Dynamic styling
+                                    onClick={() => setActiveTab(item.name)} // Updating state on click
+                                    color={activeTab === item.name ? "white" : "black"} // Dynamic styling applied
                                     bg={activeTab === item.name ? "black" : "white"}
                                     display={"flex"} gap={1} p={2} rounded={"xl"} cursor={"pointer"}
                                     transition='0.3s'

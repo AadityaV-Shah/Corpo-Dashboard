@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Text, Container, Card, Grid, Stack, Image, Dialog, Button, Flex } from "@chakra-ui/react";
-import CButton from './Button';
 
 interface DialogProps {
-    open: boolean;
+    open?: boolean;
     onClose: () => void;
     title?: string;
     text?: string;
@@ -23,7 +22,10 @@ const DialogBox: React.FC<DialogProps> = ({ open, onClose, title, text, button1,
         >
             <Dialog.Backdrop />
             <Dialog.Positioner>
-                <Dialog.Content bg="gray.800" color="white">
+                <Dialog.Content 
+                bg="gray.800" 
+                color="white"
+                >
                     <Dialog.Header>
                         <Dialog.Title fontSize="xl">{title}</Dialog.Title>
                     </Dialog.Header>
