@@ -182,7 +182,7 @@ const Profile1: React.FC = () => {
                         <ProfInfo />
                         <ProfConvo />
                     </Box>
-                </Container>
+                </Container>            
             )}
 
 

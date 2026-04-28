@@ -94,7 +94,7 @@ const LoginForm: React.FC = () => {
         display={{ base: "none", md: "none", lg:'flex' }}
         bg="#11b798"
       >
-        <Text fontFamily={"Poppins"} fontSize={'90px'}>TradeMasterPro</Text>
+        <Text fontFamily={"Poppins"} fontSize={'90px'}>TMP</Text>
       </Flex>
     </Flex>
   );

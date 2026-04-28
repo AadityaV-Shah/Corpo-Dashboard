@@ -222,7 +222,7 @@ const Userz: React.FC = () => {
                         <Box mb={4} display="flex" justifyContent="flex-end">
                             <InputGroup flex="1" maxW="300px" startElement={<LuSearch color="gray" />}>
                                 <Input
-                                    placeholder="Search by name, role, status…"
+                                    placeholder="Search by name, roles, status…"
                                     variant="outline"
                                     size="sm"
                                     bg="white"

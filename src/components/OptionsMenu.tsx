@@ -55,9 +55,11 @@ export default function OptionsMenu() {
 
                     <Menu.Separator />
 
+                    <Link to="/signup">
                     <Menu.Item value="add-account" _hover={{ bg: "#181e29" }}>
                         Add another account
                     </Menu.Item>
+                    </Link>
 
                     <Menu.Item value="settings" _hover={{ bg: "#181e29" }}>
                         Settings

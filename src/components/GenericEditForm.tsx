@@ -2,7 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import type { UseFormReturn, FieldValues, DefaultValues, Path } from "react-hook-form";
 import {
     Stack, Grid, Text, Input, Button, HStack,
-    RadioGroup, Dialog
+    RadioGroup, Dialog, Textarea
 } from "@chakra-ui/react";
 import { FieldMenu } from "./Dropdown";
 
@@ -34,7 +34,14 @@ type DateField<T> = BaseField<T> & {
     type: "date";
 };
 
-export type FormField<T> = TextField<T> | RadioField<T> | DropdownField<T> | DateField<T>;
+// ← new
+type TextareaField<T> = BaseField<T> & {
+    type: "textarea";
+    rows?: number;
+    validation?: Record<string, unknown>;
+};
+
+export type FormField<T> = TextField<T> | RadioField<T> | DropdownField<T> | DateField<T> | TextareaField<T>;
 
 // --- GenericEditForm Props ---
 
@@ -111,6 +118,27 @@ function renderField<T extends FieldValues>(
             <Grid key={String(field.name)} templateColumns={labelCol} alignItems="center" gap={4}>
                 <Text fontWeight="semibold" textAlign="right">{field.label}</Text>
                 <Input type="date" {...register(field.name)} variant="subtle" />
+            </Grid>
+        );
+    }
+
+    // Textarea case
+    if (field.type === "textarea") {
+        return (
+            <Grid key={String(field.name)} templateColumns={labelCol} alignItems="start" gap={4}>
+                <Text fontWeight="semibold" textAlign="right" mt={2}>{field.label}</Text>
+                <Stack>
+                    <Textarea
+                        {...register(field.name, field.validation ?? {})}
+                        rows={field.rows ?? 4}
+                        variant="subtle"
+                    />
+                    {error && (
+                        <Text color="red.400" fontSize="xs">    
+                            {error.message as string}
+                        </Text>
+                    )}
+                </Stack>
             </Grid>
         );
     }
