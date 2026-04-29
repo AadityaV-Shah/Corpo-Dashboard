@@ -31,6 +31,13 @@ const PROFCARD_FIELDS: FormField<ProfProjProps>[] = [
     { name: "detail", label: "Detail", type: "textarea", validation: { required: "Detail is required" } },
 ];
 
+const EMPTY_PROFCARD: Omit<ProfProjProps, 'id'> = {
+    image: "",
+    name1: "",
+    name2: "",
+    detail: "",
+};
+
 //Logic to edit the existing database data
 
 const EditUserForm = ({
@@ -48,12 +55,30 @@ const EditUserForm = ({
     />
 );
 
+// Separate form for creating — no id, calls onSave with just the new data
+const CreateUserForm = ({
+    onSave, onClose,
+}: {
+    onSave: (data: Omit<ProfProjProps, 'id'>) => void;
+    onClose: () => void;
+}) => (
+    <GenericEditForm<ProfProjProps>
+        defaultValues={{ id: 0, ...EMPTY_PROFCARD }}
+        fields={PROFCARD_FIELDS}
+        onSubmit={(data) => {
+            const { id: _, ...rest } = data as ProfProjProps;
+            onSave(rest);
+        }}
+        onClose={onClose}
+    />
+);
+
 const ProfCard: React.FC = () => {
 
     const [data, setData] = useState<ProfProjProps[]>([]);
     const [loading, setLoading] = useState(true);
-    const [profcard, setProfcard] = useState<ProfProjProps[]>([]);
     const [openDialogId, setOpenDialogId] = useState<number | null>(null);
+    const [createDialogOpen, setCreateDialogOpen] = useState(false);
 
     // Fetch data from the database
     useEffect(() => {
@@ -89,6 +114,24 @@ const ProfCard: React.FC = () => {
         }
     };
 
+    // POST — insert new row
+    const handleCreate = async (newProf: Omit<ProfProjProps, 'id'>) => {
+        try {
+            const response = await supabaseApi.post(
+                `/prof_projects`, newProf,
+                { headers: { Prefer: "return=representation" } }
+            );
+            console.log("POST STATUS:", response.status);
+            // Supabase returns an array; grab the first item which includes the new id
+            const created: ProfProjProps = response.data[0];
+            setData((prev) => [...prev, created]);
+            setCreateDialogOpen(false);
+        } catch (error: any) {
+            console.error("POST ERROR:", error.response?.status, error.response?.data);
+            alert("Failed to create project.");
+        }
+    };
+
     // Loading state 
     if (loading) return <Text>Loading...</Text>
 
@@ -101,10 +144,10 @@ const ProfCard: React.FC = () => {
                 <Text fontWeight={"medium"} color={"grey"} fontSize={"sm"}>Architects Design Houses</Text>
 
                 {/* Use SimpleGrid for easy responsive columns */}
-                <SimpleGrid gridTemplateColumns={{ base: 'repeat(1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={4} my={4}>
+                <SimpleGrid gridTemplateColumns={{ base: 'repeat(1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={4} my={4}>
                     {/* 1. Only map the first 3 items to keep the 4th slot open */}
                     {/* First 3 staxx */}
-                    {data.slice(0, 3).map((item, index) => (
+                    {data.map((item, index) => (
                         <React.Fragment key={item.id}>
                             <Stack
                                 key={index}
@@ -145,7 +188,7 @@ const ProfCard: React.FC = () => {
                             </Stack>
 
                             {/* Dialog Box for Editing profile */}
-                            
+
                             <Dialog.Root
                                 open={openDialogId === item.id}
                                 onOpenChange={(details) =>
@@ -190,12 +233,41 @@ const ProfCard: React.FC = () => {
                         <Text color={'black'} fontSize={'4xl'} lineHeight="1">+</Text>
                         <Button color={'black'} bg={'#e6e1e1'} fontSize={'md'} fontWeight="bold" textAlign="center"
                             _hover={{ bg: 'black', color: 'white' }}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setCreateDialogOpen(true);
+                            }}
                         >
                             Create a New Project
                         </Button>
                     </Stack>
                 </SimpleGrid>
             </Stack>
+
+            {/* Create Dialog — lives outside the map so it renders once */}
+            <Dialog.Root
+                open={createDialogOpen}
+                onOpenChange={(details) => setCreateDialogOpen(details.open)}
+                placement="top"
+                motionPreset="slide-in-bottom"
+            >
+                <Dialog.Backdrop />
+                <Dialog.Positioner>
+                    <Dialog.Content bg="gray.800" color="white">
+                        <Dialog.Header>
+                            <Dialog.Title fontSize="xl">Create New Project</Dialog.Title>
+                        </Dialog.Header>
+                        <Dialog.Body>
+                            <CreateUserForm
+                                onSave={handleCreate}
+                                onClose={() => setCreateDialogOpen(false)}
+                            />
+                        </Dialog.Body>
+                        <Dialog.CloseTrigger />
+                    </Dialog.Content>
+                </Dialog.Positioner>
+            </Dialog.Root>
+
         </Container>
     )
 }
