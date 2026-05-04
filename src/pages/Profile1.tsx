@@ -91,7 +91,7 @@ const Profile1: React.FC = () => {
 
                     /* RESPONSIVE WIDTH LOGIC */
                     w={{ base: "90%", md: "95%", lg: "1188px" }}
-                    maxW="1188px"
+                    maxW="1188px" 
                     transition="width 0.3s ease"
 
                     /* CENTERING LOGIC */

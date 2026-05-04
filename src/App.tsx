@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 import Profile1 from './pages/Profile1';
 import About from './pages/About';
 import Accounts from './pages/Accounts';
+import Settings from './pages/SettingsPage';
 
 const App: React.FC = () => {
   return (
@@ -41,6 +42,7 @@ const App: React.FC = () => {
             <Route path="/projects" element={<Projects />} />
             <Route path="/about" element={<About />} />
             <Route path="/accounts" element={<Accounts />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>

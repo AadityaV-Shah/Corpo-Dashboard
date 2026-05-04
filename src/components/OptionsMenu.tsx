@@ -61,9 +61,11 @@ export default function OptionsMenu() {
                     </Menu.Item>
                     </Link>
 
+                    <Link to="/settings">
                     <Menu.Item value="settings" _hover={{ bg: "#181e29" }}>
                         Settings
                     </Menu.Item>
+                    </Link>
 
                     <Menu.Separator />
 

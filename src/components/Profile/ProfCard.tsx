@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { supabaseApi } from '@/api/supabase';
 import { GenericEditForm, type FormField } from "../GenericEditForm";
+import { useSupabaseFetch } from '@/hooks/useSupabaseFetch';
 
 //Props interface
 
@@ -75,27 +76,12 @@ const CreateUserForm = ({
 
 const ProfCard: React.FC = () => {
 
-    const [data, setData] = useState<ProfProjProps[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [openDialogId, setOpenDialogId] = useState<number | null>(null);
+    const [openDialogId, setOpenDialogId] = useState<number | null>(null); //TypeScript generic — it tells TypeScript what types this state is allowed to hold: it can hold a number or null. 
     const [createDialogOpen, setCreateDialogOpen] = useState(false);
 
-    // Fetch data from the database
-    useEffect(() => {
-        const getProfCardInfo = async () => {
-            try {
-                const response = await supabaseApi.get("/prof_projects", {
-                    params: { select: '*', order: 'id.asc' }
-                });
-                setData(response.data);
-            } catch (error) {
-                console.error("Error fetching projects:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        getProfCardInfo();
-    }, []);
+    //Fetching data from Supabase table using a custom useEffect hook, endpoint(table) and params are passed through propsnpm 
+    const {data, loading, setData} = useSupabaseFetch<ProfProjProps>("/prof_projects", {select: '*', order: 'id.asc'});
+    
 
     // Update data in the supabase database
     const handleSave = async (id: number, updatedProf: Partial<ProfProjProps>) => {
@@ -159,7 +145,7 @@ const ProfCard: React.FC = () => {
                                 justify={"space-between"}
                                 h={"full"}
                             >
-                                <Image
+                                <Image      
                                     src={item.image}
                                     w={"full"}
                                     h={"200px"}
