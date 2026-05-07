@@ -80,10 +80,10 @@ const ProfCard: React.FC = () => {
     const [createDialogOpen, setCreateDialogOpen] = useState(false);
 
     //Fetching data from Supabase table using a custom useEffect hook, endpoint(table) and params are passed through propsnpm 
-    const {data, loading, setData} = useSupabaseFetch<ProfProjProps>("/prof_projects", {select: '*', order: 'id.asc'});
-    
+    const { data, loading, setData } = useSupabaseFetch<ProfProjProps>("/prof_projects", { select: '*', order: 'id.asc' });
 
-    // Update data in the supabase database
+
+    // Save the edited data in the supabase database
     const handleSave = async (id: number, updatedProf: Partial<ProfProjProps>) => {
         try {
             const { id: _, ...patchData } = updatedProf as ProfProjProps;
@@ -145,7 +145,7 @@ const ProfCard: React.FC = () => {
                                 justify={"space-between"}
                                 h={"full"}
                             >
-                                <Image      
+                                <Image
                                     src={item.image}
                                     w={"full"}
                                     h={"200px"}
@@ -153,7 +153,7 @@ const ProfCard: React.FC = () => {
                                     borderRadius="md"
                                     alt={item.name1}
                                     transition="transform 0.2s linear"
-                                    _hover={{ transform: "scale(1.02)" }}
+                                    _hover={{ transform: "scale(1.02) translateZ(0)" }}
                                 />
                                 <Stack gap={1}>
                                     <Text fontSize={"sm"} color={"grey"}>{item.name1}</Text>

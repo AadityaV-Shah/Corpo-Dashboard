@@ -7,6 +7,7 @@ import { GenericEditForm, type FormField } from "../components/GenericEditForm";
 import type { Column } from "../components/DataTable";
 import { LuSearch } from "react-icons/lu";
 import { InputGroup } from "@/components/ui/input-group"
+import { useSupabaseFetch } from '@/hooks/useSupabaseFetch';
 
 interface ProjProps {
     id: number;
@@ -74,31 +75,12 @@ const EditProjForm = ({
 //Main Component
 const Projects: React.FC = () => {
 
-    const [data, setData] = useState<ProjProps[]>([]);
-    const [loading, setLoading] = useState(true);
+
     const [openDialogId, setOpenDialogId] = useState<number | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
 
-    useEffect(() => {
-        const fetchProj = async () => {
-            try {
-                const response = await supabaseApi.get("/projects", {
-                    params: {
-                        select: '*',
-                        order: 'id.asc'
-                    }
-                });
-                console.log("STATUS:", response.status);
-                console.log("DATA:", response.data);
-                setData(response.data);
-            } catch (error) {
-                console.error("Error fetching users:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProj();
-    }, []);
+    //Fetching data from Supabase table using a custom useEffect hook, endpoint(table) and params are passed through propsnpm 
+    const { data, loading, setData } = useSupabaseFetch<ProjProps>("/projects", { select: '*', order: 'id.asc' });
 
     const handleSave = async (id: number, updatedProj: Partial<ProjProps>) => {
         try {
@@ -136,6 +118,7 @@ const Projects: React.FC = () => {
                         boxSize="40px"
                         borderRadius="full"
                         objectFit={"contain"}
+                        
                     />
                     <Box gap={0}>
                         <Text fontWeight="medium" lineHeight="short">{item.name}</Text>
@@ -235,7 +218,7 @@ const Projects: React.FC = () => {
             <Container maxW="container.lg">
 
                 {loading ? (
-                    <Text textAlign="center" color="gray.500" py={8}>Loading users…</Text>
+                    <Text textAlign="center" color="gray.500" py={8}>Loading projects...</Text>
                 ) : data.length === 0 ? (
                     <Text textAlign="center" color="gray.500" py={8}>No users found.</Text>
                 ) : (

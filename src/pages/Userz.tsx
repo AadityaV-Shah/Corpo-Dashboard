@@ -8,6 +8,7 @@ import { LuSearch } from "react-icons/lu";
 import { DataTable } from "../components/DataTable";
 import type { Column } from "../components/DataTable";
 import { GenericEditForm, type FormField } from "../components/GenericEditForm";
+import { useSupabaseFetch } from '@/hooks/useSupabaseFetch';
 
 // --- Interface ---
 interface UserProps {
@@ -94,29 +95,11 @@ const EditUserForm = ({
 // --- Main Component ---
 const Userz: React.FC = () => {
 
-    const [data, setData] = useState<UserProps[]>([]);
-    const [loading, setLoading] = useState(true);
     const [openDialogId, setOpenDialogId] = useState<number | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await supabaseApi.get("/profiles", {
-                    params: {
-                        select: '*',
-                        order: 'id.asc'
-                    }
-                });
-                setData(response.data);
-            } catch (error) {
-                console.error("Error fetching users:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchUsers();
-    }, []);
+    //Fetching data from Supabase table using a custom useEffect hook, endpoint(supabase table) and params are passed through propsnpm 
+    const { data, loading, setData } = useSupabaseFetch<UserProps>("/profiles", { select: '*', order: 'id.asc' });
 
     const handleSave = async (id: number, updatedUser: Partial<UserProps>) => {
         try {
@@ -206,7 +189,7 @@ const Userz: React.FC = () => {
                         </Dialog.Content>
                     </Dialog.Positioner>
                 </Dialog.Root>
-            ),  
+            ),
         },
     ];
 
